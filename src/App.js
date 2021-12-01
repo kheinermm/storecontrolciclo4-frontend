@@ -6,15 +6,18 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Container } from 'react-bootstrap';
+
 import Login from './components/login/login';
+import Menu from './components/navbar/navbar'
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Menu />
       <Container>
-        <Login/>
+        <Login />
       </Container>
     </div>
   );
