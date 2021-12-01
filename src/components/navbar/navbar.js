@@ -13,7 +13,7 @@ export default class menu extends React.Component {
         return (
             <Navbar fixed="top" bg="primary" variant="dark" id="navbar">
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="#home" id="navbar-brand">
                         Store Control <span id="usuario-sub-branm"></span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

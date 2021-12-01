@@ -1,6 +1,9 @@
-/* #navbar {
-    width: 100%;
-} */
+#navbar-brand {
+    /* width: 100%; */
+    position: absolute;
+    left: 0px;
+    padding: 20%;
+}
 
 #menu-usuario {
     /* float: right; */

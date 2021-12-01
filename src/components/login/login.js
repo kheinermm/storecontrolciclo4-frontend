@@ -1,21 +1,54 @@
 import React from 'react';
+import axios from 'axios';
+import { APIHOST as host } from '../../App.json';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './login.css';
+import { isNull } from 'util';
+import Cookies from 'universal-cookie';
+import { calculaExpiracionSesion } from '../helper/helper';
+
+const cookies = new Cookies();
 
 export default class login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading:false,
             usuario: '',
-            pass: '',
+            pass: ''
         };
     }
     iniciarSesion() {
-        alert(`usuario: ${this.state.usuario} -- password: ${this.state.pass}`);
+        
+        this.setState({ loading: true });
+
+        axios.post(`${host}/usuarios/login`, {
+            usuario: this.state.usuario,
+            pass: this.state.pass
+        })
+        .then((response) => {
+            if (isNull(response.data.token)) {
+                alert('Usuario y/o contraseña invalidos');
+            } else {
+                cookies.set('_s', response.data.token, {
+                    path: '/',
+                    expires: calculaExpiracionSesion()
+                });
+                this.props.history.push('/home');
+            }
+            this.setState({ loading: false });
+        })
+        .catch((err) => {
+            console.log(err)
+            this.setState({ loading: false });
+        });
     }
     render() {
         return (
             <Container id="login-container">
+
+            <Loading show={this.state.loading} />
+
                 <Row>
                     <Col>
                         <Row >
