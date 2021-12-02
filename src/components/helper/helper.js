@@ -1,6 +1,7 @@
 import { isUndefined } from 'util';
 import axios from 'axios';
 import Cookies from 'universal-cookie/es6';
+import { APIHOST as host } from '../../App.json';
 
 const cookies = new Cookies();
 
@@ -25,8 +26,9 @@ function renewSession() {
 }
 
 export const request = {
-	get: function (url) {
+	get: function (services) {
 		renewSession();
-		return axios.get(url);
+		return axios.get(`${host}${services}`);
+		// return axios.get(`${host}/${services}`);
 	}
 };
