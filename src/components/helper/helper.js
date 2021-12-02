@@ -23,13 +23,16 @@ function renewSession() {
 		path: '/',
 		expires: calculaExpiracionSesion()
 	});
-	return sesion;
+	return session;
 }
 
 export const request = {
 	get: function (services) {
-		renewSession();
-		return axios.get(`${host}${services}`);
-		// return axios.get(`${host}/${services}`);
+		let token = renewSession();
+		return axios.get(`${host}${services}`, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		});
 	}
 };
