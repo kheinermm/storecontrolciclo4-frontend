@@ -1,8 +1,5 @@
 #navbar-brand {
-    /* width: 100%; */
-    position: absolute;
-    left: 0px;
-    padding: 20%;
+    margin-left: 6%;
 }
 
 #menu-usuario {

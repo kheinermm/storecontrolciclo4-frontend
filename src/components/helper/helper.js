@@ -16,7 +16,7 @@ export function getSession() {
 
 function renewSession() {
 	const session = getSession();
-	if (!session) { windows.location.href = '/login'; }
+	if (!session) { window.location.href = '/login'; }
 
 	cookies.set('_s', session, {
 		path: '/',

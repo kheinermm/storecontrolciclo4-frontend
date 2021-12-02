@@ -3,6 +3,7 @@ import axios from 'axios';
 import { APIHOST as host } from '../../App.json';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './login.css';
+import Loading from '../loading/loading';
 import { isNull } from 'util';
 import Cookies from 'universal-cookie';
 import { calculaExpiracionSesion } from '../helper/helper';
