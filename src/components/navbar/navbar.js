@@ -14,7 +14,8 @@ export default class menu extends React.Component {
     }
     logout() {
         cookies.remove('_s');
-        window.location.reload();
+        window.location.href = '/';
+        // window.location.reload();
     }
     render() {
         return (
