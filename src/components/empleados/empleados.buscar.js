@@ -1,9 +1,15 @@
 import React from 'react';
 import { request } from '../helper/helper';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import './empleados.css'
 import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory, { PaginationProvider, PaginationListStandalone } from 'react-bootstrap-table2-paginator';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import paginationFactory,
+{
+    PaginationProvider, PaginationListStandalone,
+    SizePerPageDropdownStandalone, PaginationTotalStandalone
+}
+    from 'react-bootstrap-table2-paginator';
 //
 // npm install react-bootstrap-table-next react-bootstrap-table2-toolkit react-bootstrap-table2-filter react-bootstrap-table2-editor react-bootstrap-table2-paginator --save
 
@@ -11,9 +17,14 @@ import paginationFactory, { PaginationProvider, PaginationListStandalone } from 
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/basic-pagination.html
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/basic-filter.html
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/table-props.html
+// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/basic-search.html
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/toolkits-getting-started.html
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/exposed-api.html
 //
+// https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html?selectedKind=Welcome&selectedStory=react%20bootstrap%20table%202%20&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Factions%2Factions-panel
+//
+
+const { SearchBar, ClearSearchButton } = Search;
 
 const products = [
     {
@@ -80,30 +91,59 @@ export default class EmpleadosBuscar extends React.Component {
             <Container id="empleados-buscar-container">
                 <Row>
                     <h1>Buscar Empleados</h1>
+                    <hr />
                 </Row>
                 <Row>
-                    <PaginationProvider
-                        pagination={paginationFactory(options)}
+                    <ToolkitProvider
+                        keyField="pt"
+                        data={products}
+                        columns={columns}
+                        search
                     >
                         {
-                            ({
-                                paginationProps,
-                                paginationTableProps
-                            }) => (
-                                <div>
-                                    <BootstrapTable
-                                        keyField="id"
-                                        data={products}
-                                        columns={columns}
-                                        {...paginationTableProps}
-                                    />
-                                    <PaginationListStandalone
-                                        {...paginationProps}
-                                    />
-                                </div>
+                            props => (
+                                <>
+                                    <PaginationProvider
+                                        pagination={paginationFactory(options)}
+                                    >
+                                        {
+                                            ({
+                                                paginationProps,
+                                                paginationTableProps
+                                            }) => (
+                                                <>
+                                                    <Row>
+                                                        <Col>
+                                                            <SizePerPageDropdownStandalone
+                                                                {...paginationProps}
+                                                            />
+                                                        </Col>
+                                                        <Col>
+                                                            <SearchBar {...props.searchProps} />
+                                                            <ClearSearchButton {...props.searchProps} />
+                                                        </Col>
+                                                    </Row>
+                                                    <BootstrapTable
+                                                        keyField="bt"
+                                                        data={products}
+                                                        columns={columns}
+                                                        {...paginationTableProps}
+                                                        {...props.baseProps}
+                                                    />
+                                                    <PaginationTotalStandalone
+                                                        {...paginationProps}
+                                                    />
+                                                    <PaginationListStandalone
+                                                        {...paginationProps}
+                                                    />
+                                                </>
+                                            )
+                                        }
+                                    </PaginationProvider>
+                                </>
                             )
                         }
-                    </PaginationProvider>
+                    </ToolkitProvider>
                 </Row>
             </Container>
         );
