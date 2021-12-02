@@ -8,6 +8,18 @@ export default class EmpleadosBuscar extends React.Component {
         super(props);
         this.state = {};
     }
+
+    componentDidMount() {
+        request
+        .get('/empleados')
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }
+
     render() {
         return (
             <Container id="empleados-buscar-container">

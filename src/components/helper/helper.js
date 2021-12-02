@@ -23,6 +23,7 @@ function renewSession() {
 		path: '/',
 		expires: calculaExpiracionSesion()
 	});
+	return sesion;
 }
 
 export const request = {
