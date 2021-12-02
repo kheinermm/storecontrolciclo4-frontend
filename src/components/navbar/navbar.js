@@ -3,11 +3,18 @@ import { Container, Navbar, Nav, DropdownButton, Dropdown, Row, Col } from 'reac
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import './navbar.css'
+import Cookies from 'universal-cookie/es6';
+
+const cookies = new Cookies();
 
 export default class menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
+    }
+    logout() {
+        cookies.remove('_s');
+        window.location.reload();
     }
     render() {
         return (
@@ -32,7 +39,7 @@ export default class menu extends React.Component {
                                     </Row>
                                 </Dropdown.Header>
                                 <Dropdown.Divider />
-                                <Dropdown.Item href="#/action-1">
+                                <Dropdown.Item onClick={ () => this.logout() } >
                                     <h4 id="textoCentrado">Cerrar Sesión</h4>
                                 </Dropdown.Item>
                                 {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
