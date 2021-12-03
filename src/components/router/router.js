@@ -6,7 +6,7 @@ import {
 import PrivateRoute from '../auth/PrivateRouter';
 
 import login from '../login/login';
-import empleados from '../empleados/empleados.buscar';
+import empleados from '../empleados/index';
 
 export default function AppRouter() {
 	return (

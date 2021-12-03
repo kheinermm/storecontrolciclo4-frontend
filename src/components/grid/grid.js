@@ -1,7 +1,6 @@
 import React from 'react';
 import { request } from '../helper/helper';
 import { Button, Row, Col } from 'react-bootstrap';
-import './grid.css'
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory, {
