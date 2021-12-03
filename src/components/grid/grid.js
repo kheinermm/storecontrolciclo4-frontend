@@ -30,7 +30,7 @@ export default class DataGrid extends React.Component {
       rows: [],
     };
 
-    if (this.props.showEditButton && !this.existsColumn("Editar")) {
+    if (this.props.showEditButton && !this.existsColumn('Editar')) {
       this.props.columns.push(this.getEditButton());
     }
   }
@@ -62,7 +62,7 @@ export default class DataGrid extends React.Component {
 
   getEditButton() {
     return {
-      text: "Editar",
+      text: 'Editar',
       formatter: function priceFormatter(cell, row) {
         // console.log(row);
         return (
