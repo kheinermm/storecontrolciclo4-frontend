@@ -12,7 +12,7 @@ import paginationFactory, {
 
 import Loading from "../loading/loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { isUndefined } from "util";
 
 // npm install react-bootstrap-table-next react-bootstrap-table2-toolkit react-bootstrap-table2-filter react-bootstrap-table2-editor react-bootstrap-table2-paginator --save
@@ -30,8 +30,12 @@ export default class DataGrid extends React.Component {
       rows: [],
     };
 
-    if (this.props.showEditButton && !this.existsColumn('Editar')) {
+    if (this.props.showEditButton && !this.existsColumn("Editar")) {
       this.props.columns.push(this.getEditButton());
+    }
+
+    if (this.props.showDeleteButton && !this.existsColumn("Eliminar")) {
+      this.props.columns.push(this.getDeleteButton());
     }
   }
 
@@ -62,12 +66,25 @@ export default class DataGrid extends React.Component {
 
   getEditButton() {
     return {
-      text: 'Editar',
+      text: "Editar",
       formatter: function priceFormatter(cell, row) {
         // console.log(row);
         return (
           <Button onClick={() => this.props.onClickEditButton(row)}>
             <FontAwesomeIcon icon={faEdit} />
+          </Button>
+        );
+      },
+    };
+  }
+
+  getDeleteButton() {
+    return {
+      text: "Eliminar",
+      formatter: (cell, row) => {
+        return (
+          <Button onClick={() => this.props.onClickDeleteButton(row)}>
+            <FontAwesomeIcon icon={faTrash} />
           </Button>
         );
       },

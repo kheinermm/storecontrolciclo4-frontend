@@ -55,4 +55,13 @@ export const request = {
       },
     });
   },
+
+  delete: function (services) {
+    let token = renewSession();
+    return axios.delete(`${host}${services}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 };

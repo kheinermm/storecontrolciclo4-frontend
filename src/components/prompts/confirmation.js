@@ -12,13 +12,17 @@ export default class confirmationPrompts extends React.Component {
   }
   render() {
     return (
-      <Modal show={this.state.show} centered>
+      <Modal
+        show={this.state.show}
+        centered
+        onHide={() => this.props.onCancel()}
+      >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{this.state.title}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          <p>{this.state.text}</p>
         </Modal.Body>
 
         <Modal.Footer>

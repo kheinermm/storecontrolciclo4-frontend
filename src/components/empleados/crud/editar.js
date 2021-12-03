@@ -16,6 +16,11 @@ export default class EmpleadosEditar extends React.Component {
         text: "",
         show: false,
       },
+      cofirmation: {
+        title: "Modificar empleado",
+        text: "¿Esta seguro de modificar el empleado?",
+        show: false,
+      },
       loading: false,
       empleado: {
         codigo: "",
@@ -27,6 +32,8 @@ export default class EmpleadosEditar extends React.Component {
       },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+    this.onConfirm = this.onConfirm.bind(this);
   }
 
   componentDidMount() {
@@ -87,17 +94,56 @@ export default class EmpleadosEditar extends React.Component {
     }
   }
 
+  onCancel() {
+    this.setState({
+      confirmation: {
+        ...this.state.confirmation,
+        show: false,
+      },
+    });
+  }
+
+  onConfirm() {
+    this.setState(
+      {
+        confirmation: {
+          ...this.state.confirmation,
+          show: false,
+        },
+      },
+      this.guardarEmpleados()
+    );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      show: nextProps.show,
+      title: nextProps.title,
+      text: nextProps.text,
+    });
+  }
+
   render() {
     return (
       <Container id="empleados-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={3000}
+          duration={2000}
           onExited={this.onExitedMessage}
         />
 
-        <confirmationPrompts />
+        <confirmationPrompts
+          show={this.state.confirmation.show}
+          title={this.state.confirmation.title}
+          text={this.state.confirmation.text}
+          onCancel={() => {
+            this.onCancel;
+          }}
+          onConfirm={() => {
+            this.onConfirm;
+          }}
+        />
 
         <Loading show={this.state.loading} />
 
@@ -156,7 +202,11 @@ export default class EmpleadosEditar extends React.Component {
 
             <Button
               variant="primary"
-              onClick={() => console.log(this.guardarEmpleados)}
+              onClick={() =>
+                this.setState({
+                  confirmation: { ...this.state.confirmation, show: true },
+                })
+              }
             >
               Guardar Producto
             </Button>
