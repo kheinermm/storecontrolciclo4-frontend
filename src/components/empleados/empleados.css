@@ -19,3 +19,8 @@
 .sr-only {
     font-size: 0;
 }
+
+#empleados-crear-container .form-label {
+    float: left;
+    margin-bottom: 10px;
+}
