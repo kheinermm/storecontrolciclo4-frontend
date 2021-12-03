@@ -1,92 +1,49 @@
 import React from 'react';
-import { request } from '../helper/helper';
+// import { request } from '../helper/helper';
 import { Container, Row, Col } from 'react-bootstrap';
 import './empleados.css'
-import BootstrapTable from 'react-bootstrap-table-next';
-import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import paginationFactory,
-{
-    PaginationProvider, PaginationListStandalone,
-    SizePerPageDropdownStandalone, PaginationTotalStandalone
-}
-    from 'react-bootstrap-table2-paginator';
-//
-// npm install react-bootstrap-table-next react-bootstrap-table2-toolkit react-bootstrap-table2-filter react-bootstrap-table2-editor react-bootstrap-table2-paginator --save
-
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/basic-pagination.html
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/basic-filter.html
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/table-props.html
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/basic-search.html
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/toolkits-getting-started.html
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/exposed-api.html
-//
-// https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html?selectedKind=Welcome&selectedStory=react%20bootstrap%20table%202%20&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Factions%2Factions-panel
-//
-
-const { SearchBar, ClearSearchButton } = Search;
-
-const products = [
-    {
-        id: 1,
-        name: 'Producto 1',
-        price: 1000,
-        category: 'Dairy'
-    },
-    {
-        id: 2,
-        name: 'Producto 2',
-        price: 2000,
-        category: 'Meats'
-    },
-];
+import DataGrid from '../grid/grid';
 
 const columns = [{
-    dataField: 'id',
-    text: 'Product ID'
+    dataField: '_id',
+    text: 'ID',
+    hidden: true,
 }, {
-    dataField: 'name',
-    text: 'Product Name'
-
+    dataField: 'codigo',
+    text: 'Codigo Producto',
+    sort: true,
 }, {
-    dataField: 'price',
-    text: 'Product Price'
+    dataField: 'nombre',
+    text: 'Nombre Producto',
+    sort: true,
 }, {
-    dataField: 'category',
-    text: 'Category',
-    sort: true
+    dataField: 'categoria',
+    text: 'Categoria',
+    sort: true,
+}, {
+    dataField: 'precio',
+    text: 'Precio',
+}, {
+    dataField: 'cantidad',
+    text: 'Cantidad',
+}, {
+    dataField: 'stockMinimo',
+    text: 'Stock Minimo',
 }];
-
-// export default () =>
-//     <BootstrapTable
-//         keyField='id'
-//         data={products}
-//         columns={columns} />
 
 export default class EmpleadosBuscar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {  };
+        this.onClickEditButton = this.onClickEditButton.bind(this);
     }
 
-    componentDidMount() {
-        request
-            .get('/empleados')
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+    onClickEditButton(row) {
+        this.props.showIdEmpleado(row._id)
+        this.props.changeTab('editar');
     }
 
     render() {
-
-        const options = {
-            custom: true,
-            totalSize: products.length
-        };
-
         return (
             <Container id="empleados-buscar-container">
                 <Row>
@@ -94,56 +51,12 @@ export default class EmpleadosBuscar extends React.Component {
                     <hr />
                 </Row>
                 <Row>
-                    <ToolkitProvider
-                        keyField="pt"
-                        data={products}
+                    <DataGrid
+                        url="/empleados"
                         columns={columns}
-                        search
-                    >
-                        {
-                            props => (
-                                <>
-                                    <PaginationProvider
-                                        pagination={paginationFactory(options)}
-                                    >
-                                        {
-                                            ({
-                                                paginationProps,
-                                                paginationTableProps
-                                            }) => (
-                                                <>
-                                                    <Row>
-                                                        <Col>
-                                                            <SizePerPageDropdownStandalone
-                                                                {...paginationProps}
-                                                            />
-                                                        </Col>
-                                                        <Col>
-                                                            <SearchBar {...props.searchProps} />
-                                                            <ClearSearchButton {...props.searchProps} />
-                                                        </Col>
-                                                    </Row>
-                                                    <BootstrapTable
-                                                        keyField="bt"
-                                                        data={products}
-                                                        columns={columns}
-                                                        {...paginationTableProps}
-                                                        {...props.baseProps}
-                                                    />
-                                                    <PaginationTotalStandalone
-                                                        {...paginationProps}
-                                                    />
-                                                    <PaginationListStandalone
-                                                        {...paginationProps}
-                                                    />
-                                                </>
-                                            )
-                                        }
-                                    </PaginationProvider>
-                                </>
-                            )
-                        }
-                    </ToolkitProvider>
+                        showEditButton={true}
+                        onClickEditButton={this.onClickEditButton}
+                    />
                 </Row>
             </Container>
         );
