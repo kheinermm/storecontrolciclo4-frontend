@@ -17,6 +17,7 @@ import { isUndefined } from "util";
 
 // npm install react-bootstrap-table-next react-bootstrap-table2-toolkit react-bootstrap-table2-filter react-bootstrap-table2-editor react-bootstrap-table2-paginator --save
 
+// guia, documentacion de react-bootstrap-table2
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html?selectedKind=Welcome&selectedStory=react%20bootstrap%20table%202%20&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Factions%2Factions-panel
 
