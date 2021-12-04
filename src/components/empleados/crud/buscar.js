@@ -38,38 +38,6 @@ const columns = [
     dataField: "direccion",
     text: "Direccion",
   },
-  // {
-  //   dataField: "_id",
-  //   text: "ID",
-  //   hidden: true,
-  // },
-  // {
-  //   dataField: "codigo",
-  //   text: "Codigo Producto",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "nombre",
-  //   text: "Nombre Producto",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "categoria",
-  //   text: "Categoria",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "precio",
-  //   text: "Precio",
-  // },
-  // {
-  //   dataField: "cantidad",
-  //   text: "Cantidad",
-  // },
-  // {
-  //   dataField: "stockMinimo",
-  //   text: "Stock Minimo",
-  // },
 ];
 
 export default class EmpleadosBuscar extends React.Component {
