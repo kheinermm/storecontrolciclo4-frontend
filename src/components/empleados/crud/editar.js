@@ -131,6 +131,7 @@ export default class EmpleadosEditar extends React.Component {
     });
   }
 
+  
   render() {
     return (
       <Container id="empleados-crear-container">

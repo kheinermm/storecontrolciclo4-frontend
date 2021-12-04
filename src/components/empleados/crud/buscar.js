@@ -1,5 +1,4 @@
 import React from "react";
-// import { request } from '../helper/helper';
 import { Container, Row, Col } from "react-bootstrap";
 import "../empleados.css";
 import DataGrid from "../../grid/grid";
