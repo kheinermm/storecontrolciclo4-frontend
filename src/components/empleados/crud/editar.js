@@ -23,13 +23,21 @@ export default class EmpleadosEditar extends React.Component {
       },
       loading: false,
       empleado: {
-        codigo: "",
         nombre: "",
-        categoria: "",
-        precio: "",
-        cantidad: "",
-        stockMinimo: "",
+        apellido_p: "",
+        apellido_m: "",
+        telefono: "",
+        mail: "",
+        direccion: "",
       },
+      // producto: {
+      //   codigo: "",
+      //   nombre: "",
+      //   categoria: "",
+      //   precio: "",
+      //   cantidad: "",
+      //   stockMinimo: "",
+      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
     this.onCancel = this.onCancel.bind(this);
@@ -151,7 +159,67 @@ export default class EmpleadosEditar extends React.Component {
           <h1>Editar Producto</h1>
         </Row>
         <Row>
-          <Form>
+        <Form>
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                value={this.state.empleado.nombre}
+                onChange={(e) => this.setValue("nombre", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Apellido 1</Form.Label>
+              <Form.Control
+                value={this.state.empleado.apellido_p}
+                onChange={(e) => this.setValue("apellido_p", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Apellido 2</Form.Label>
+              <Form.Control
+                value={this.state.empleado.apellido_m}
+                onChange={(e) => this.setValue("apellido_m", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Telefono</Form.Label>
+              <Form.Control
+                value={this.state.empleado.telefono}
+                onChange={(e) => this.setValue("telefono", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Mail</Form.Label>
+              <Form.Control
+                value={this.state.empleado.mail}
+                onChange={(e) => this.setValue("mail", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Direccion</Form.Label>
+              <Form.Control
+                value={this.state.empleado.direccion}
+                onChange={(e) => this.setValue("direccion", e.target.value)}
+              />
+            </Form.Group>
+
+            <Button
+              variant="primary"
+              onClick={() =>
+                this.setState({
+                  confirmation: { ...this.state.confirmation, show: true },
+                })
+              }
+            >
+              Guardar Empleado
+            </Button>
+          </Form>
+          {/* <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
@@ -210,7 +278,7 @@ export default class EmpleadosEditar extends React.Component {
             >
               Guardar Producto
             </Button>
-          </Form>
+          </Form> */}
         </Row>
       </Container>
     );

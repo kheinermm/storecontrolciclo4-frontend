@@ -15,13 +15,21 @@ export default class EmpleadosCrear extends React.Component {
       },
       loading: false,
       empleado: {
-        codigo: "",
         nombre: "",
-        categoria: "",
-        precio: "",
-        cantidad: "",
-        stockMinimo: "",
+        apellido_p: "",
+        apellido_m: "",
+        telefono: "",
+        mail: "",
+        direccion: "",
       },
+      // producto: {
+      //   codigo: "",
+      //   nombre: "",
+      //   categoria: "",
+      //   precio: "",
+      //   cantidad: "",
+      //   stockMinimo: "",
+      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
   }
@@ -76,10 +84,60 @@ export default class EmpleadosCrear extends React.Component {
         <Loading show={this.state.loading} />
 
         <Row>
-          <h1>Crear Producto</h1>
+          <h1>Crear Empleado</h1>
         </Row>
         <Row>
-          <Form>
+        <Form>
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Nombre empleado</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("nombre", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Primer apellido</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("apellido_p", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Segundo apellido</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("apellido_m", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Telefono</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("telefono", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Correo electronico</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("mail", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Direccion</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("direccion", e.target.value)}
+              />
+            </Form.Group>
+
+            <Button
+              variant="primary"
+              onClick={() => console.log(this.guardarEmpleados)}
+            >
+              Guardar Empleado
+            </Button>
+          </Form>
+          {/* <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
@@ -128,7 +186,7 @@ export default class EmpleadosCrear extends React.Component {
             >
               Guardar Producto
             </Button>
-          </Form>
+          </Form> */}
         </Row>
       </Container>
     );

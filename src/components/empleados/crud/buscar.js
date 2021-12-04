@@ -14,32 +14,63 @@ const columns = [
     hidden: true,
   },
   {
-    dataField: "codigo",
-    text: "Codigo Producto",
-    sort: true,
-  },
-  {
     dataField: "nombre",
-    text: "Nombre Producto",
+    text: "Nombre",
     sort: true,
   },
   {
-    dataField: "categoria",
-    text: "Categoria",
+    dataField: "apellido_p",
+    text: "Primer Apellido",
     sort: true,
   },
   {
-    dataField: "precio",
-    text: "Precio",
+    dataField: "apellido_m",
+    text: "Segundo Apellido",
   },
   {
-    dataField: "cantidad",
-    text: "Cantidad",
+    dataField: "telefono",
+    text: "Telefono",
   },
   {
-    dataField: "stockMinimo",
-    text: "Stock Minimo",
+    dataField: "mail",
+    text: "Correo electronico",
   },
+  {
+    dataField: "direccion",
+    text: "Direccion",
+  },
+  // {
+  //   dataField: "_id",
+  //   text: "ID",
+  //   hidden: true,
+  // },
+  // {
+  //   dataField: "codigo",
+  //   text: "Codigo Producto",
+  //   sort: true,
+  // },
+  // {
+  //   dataField: "nombre",
+  //   text: "Nombre Producto",
+  //   sort: true,
+  // },
+  // {
+  //   dataField: "categoria",
+  //   text: "Categoria",
+  //   sort: true,
+  // },
+  // {
+  //   dataField: "precio",
+  //   text: "Precio",
+  // },
+  // {
+  //   dataField: "cantidad",
+  //   text: "Cantidad",
+  // },
+  // {
+  //   dataField: "stockMinimo",
+  //   text: "Stock Minimo",
+  // },
 ];
 
 export default class EmpleadosBuscar extends React.Component {
