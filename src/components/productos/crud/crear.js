@@ -15,21 +15,13 @@ export default class ProductosCrear extends React.Component {
       },
       loading: false,
       producto: {
+        codigo: "",
         nombre: "",
-        apellido_p: "",
-        apellido_m: "",
-        telefono: "",
-        mail: "",
-        direccion: "",
+        categoria: "",
+        precio: "",
+        cantidad: "",
+        stockMinimo: "",
       },
-      // producto: {
-      //   codigo: "",
-      //   nombre: "",
-      //   categoria: "",
-      //   precio: "",
-      //   cantidad: "",
-      //   stockMinimo: "",
-      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
   }
@@ -88,57 +80,7 @@ export default class ProductosCrear extends React.Component {
           <h1>Crear Producto</h1>
         </Row>
         <Row>
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre producto</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("nombre", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Primer apellido</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("apellido_p", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Segundo apellido</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("apellido_m", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Telefono</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("telefono", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Correo electronico</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("mail", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Direccion</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("direccion", e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              onClick={() => console.log(this.guardarProductos)}
-            >
-              Guardar Producto
-            </Button>
-          </Form>
-          {/* <Form>
+          <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
@@ -187,7 +129,7 @@ export default class ProductosCrear extends React.Component {
             >
               Guardar Producto
             </Button>
-          </Form> */}
+          </Form>
         </Row>
       </Container>
     );
