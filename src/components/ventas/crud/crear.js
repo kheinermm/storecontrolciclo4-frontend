@@ -4,7 +4,7 @@ import { Container, Form, Row } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
-export default class EmpleadosCrear extends React.Component {
+export default class VentasCrear extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,39 +14,31 @@ export default class EmpleadosCrear extends React.Component {
         show: false,
       },
       loading: false,
-      empleado: {
+      venta: {
+        codigo: "",
         nombre: "",
-        apellido_p: "",
-        apellido_m: "",
-        telefono: "",
-        mail: "",
-        direccion: "",
+        categoria: "",
+        precio: "",
+        cantidad: "",
+        stockMinimo: "",
       },
-      // producto: {
-      //   codigo: "",
-      //   nombre: "",
-      //   categoria: "",
-      //   precio: "",
-      //   cantidad: "",
-      //   stockMinimo: "",
-      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
   }
 
   setValue(index, value) {
     this.setState({
-      empleado: {
-        ...this.state.empleado,
+      venta: {
+        ...this.state.venta,
         [index]: value,
       },
     });
   }
 
-  guardarEmpleados() {
+  guardarVentas() {
     this.setState({ loading: true });
     request
-      .post("/empleados", this.state.empleado)
+      .post("/ventas", this.state.venta)
       .then((response) => {
         if (response.data.exito) {
           this.setState({
@@ -71,10 +63,9 @@ export default class EmpleadosCrear extends React.Component {
     }
   }
 
-  
   render() {
     return (
-      <Container id="empleados-crear-container">
+      <Container id="ventas-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -85,60 +76,10 @@ export default class EmpleadosCrear extends React.Component {
         <Loading show={this.state.loading} />
 
         <Row>
-          <h1>Crear Empleado</h1>
+          <h1>Crear Venta</h1>
         </Row>
         <Row>
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre empleado</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("nombre", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Primer apellido</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("apellido_p", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Segundo apellido</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("apellido_m", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Telefono</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("telefono", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Correo electronico</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("mail", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Direccion</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("direccion", e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              onClick={() => console.log(this.guardarEmpleados)}
-            >
-              Guardar Empleado
-            </Button>
-          </Form>
-          {/* <Form>
+          <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
@@ -183,11 +124,11 @@ export default class EmpleadosCrear extends React.Component {
 
             <Button
               variant="primary"
-              onClick={() => console.log(this.guardarEmpleados)}
+              onClick={() => console.log(this.guardarVentas)}
             >
               Guardar Producto
             </Button>
-          </Form> */}
+          </Form>
         </Row>
       </Container>
     );

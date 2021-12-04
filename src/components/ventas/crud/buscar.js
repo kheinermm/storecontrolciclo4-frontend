@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import "../empleados.css";
+import "../ventas.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
 import Loading from "../../loading/loading";
@@ -13,74 +13,43 @@ const columns = [
     hidden: true,
   },
   {
+    dataField: "codigo",
+    text: "Codigo Producto",
+    sort: true,
+  },
+  {
     dataField: "nombre",
-    text: "Nombre",
+    text: "Nombre Producto",
     sort: true,
   },
   {
-    dataField: "apellido_p",
-    text: "Primer Apellido",
+    dataField: "categoria",
+    text: "Categoria",
     sort: true,
   },
   {
-    dataField: "apellido_m",
-    text: "Segundo Apellido",
+    dataField: "precio",
+    text: "Precio",
   },
   {
-    dataField: "telefono",
-    text: "Telefono",
+    dataField: "cantidad",
+    text: "Cantidad",
   },
   {
-    dataField: "mail",
-    text: "Correo electronico",
+    dataField: "stockMinimo",
+    text: "Stock Minimo",
   },
-  {
-    dataField: "direccion",
-    text: "Direccion",
-  },
-  // {
-  //   dataField: "_id",
-  //   text: "ID",
-  //   hidden: true,
-  // },
-  // {
-  //   dataField: "codigo",
-  //   text: "Codigo Producto",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "nombre",
-  //   text: "Nombre Producto",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "categoria",
-  //   text: "Categoria",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "precio",
-  //   text: "Precio",
-  // },
-  // {
-  //   dataField: "cantidad",
-  //   text: "Cantidad",
-  // },
-  // {
-  //   dataField: "stockMinimo",
-  //   text: "Stock Minimo",
-  // },
 ];
 
-export default class EmpleadosBuscar extends React.Component {
+export default class VentasBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idEmpleado: null,
+      idVenta: null,
       loading: false,
       confirmation: {
-        title: "Eliminar Empleado",
-        text: "¿Esta seguro de eliminar el empleado?",
+        title: "Eliminar Venta",
+        text: "¿Esta seguro de eliminar la venta?",
         show: false,
       },
       message: {
@@ -96,13 +65,13 @@ export default class EmpleadosBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    this.props.showIdEmpleado(row._id);
+    this.props.showIdVenta(row._id);
     this.props.changeTab("editar");
   }
 
   onClickDeleteButton(row) {
     this.setState({
-      idEmpleado: row._id,
+      idVenta: row._id,
       confirmation: {
         ...this.state.confirmation,
         show: true,
@@ -127,7 +96,7 @@ export default class EmpleadosBuscar extends React.Component {
           show: false,
         },
       },
-      this.eliminarEmpleado()
+      this.eliminarVenta()
     );
   }
 
@@ -135,10 +104,10 @@ export default class EmpleadosBuscar extends React.Component {
     this.props.changeTab("buscar");
   }
 
-  eliminarEmpleado() {
+  eliminarVenta() {
     this.setState({ loading: true });
     request
-      .delete(`/empleados/${this.state.idEmpleado}`)
+      .delete(`/ventas/${this.state.idVenta}`)
       .then((response) => {
         this.setState({
           loading: false,
@@ -165,7 +134,7 @@ export default class EmpleadosBuscar extends React.Component {
 
   render() {
     return (
-      <Container id="empleados-buscar-container">
+      <Container id="ventas-buscar-container">
         <ConfirmationPrompts
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
@@ -184,12 +153,12 @@ export default class EmpleadosBuscar extends React.Component {
         <Loading show={this.props.loading} />
 
         <Row>
-          <h1>Buscar Empleados</h1>
+          <h1>Buscar Ventas</h1>
           <hr />
         </Row>
         <Row>
           <DataGrid
-            url="/empleados"
+            url="/ventas"
             columns={columns}
             showEditButton={true}
             showDeleteButton={true}

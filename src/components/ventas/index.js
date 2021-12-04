@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Nav, Row } from "react-bootstrap";
-import EmpleadosBuscar from "./crud/buscar";
-import EmpleadosCrear from "./crud/crear";
-import EmpleadosEditar from "./crud/editar";
-import "./empleados.css";
+import VentasBuscar from "./crud/buscar";
+import VentasCrear from "./crud/crear";
+import VentasEditar from "./crud/editar";
+import "./ventas.css";
 
-export default class Empleados extends React.Component {
+export default class Ventas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,25 +13,25 @@ export default class Empleados extends React.Component {
       _id: null,
     };
     this.changeTab = this.changeTab.bind(this);
-    this.setIdEmpleado = this.setIdEmpleado.bind(this);
-    this.getIdEmpleado = this.getIdEmpleado.bind(this);
+    this.setIdVenta = this.setIdVenta.bind(this);
+    this.getIdVenta = this.getIdVenta.bind(this);
   }
 
   changeTab(tab) {
     this.setState({ currentTab: tab });
   }
 
-  setIdEmpleado(id) {
+  setIdVenta(id) {
     this.setState({ _id: id });
   }
 
-  getIdEmpleado() {
+  getIdVenta() {
     return this.state._id;
   }
 
   render() {
     return (
-      <Container id="empleados-container">
+      <Container id="ventas-container">
         <Row>
           <Nav
             fill
@@ -49,16 +49,16 @@ export default class Empleados extends React.Component {
         </Row>
         <Row>
           {this.state.currentTab === "buscar" ? (
-            <EmpleadosBuscar
+            <VentasBuscar
               changeTab={this.changeTab}
-              setIdEmpleado={this.setIdEmpleado}
+              setIdVenta={this.setIdVenta}
             />
           ) : this.state.currentTab === "crear" ? (
-            <EmpleadosCrear changeTab={this.changeTab} />
+            <VentasCrear changeTab={this.changeTab} />
           ) : (
-            <EmpleadosEditar
+            <VentasEditar
               changeTab={this.changeTab}
-              getIdEmpleado={this.getIdEmpleado}
+              getIdVenta={this.getIdVenta}
             />
           )}
         </Row>
