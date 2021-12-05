@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import PrivateRoute from "../auth/PrivateRouter";
+// import PrivateRoute from "../auth/PrivateRouter";
 
 import login from "../login/login";
 import empleados from "../empleados/index";
@@ -10,7 +10,7 @@ export default function AppRouter() {
     <Router>
       <Switch>
         <Route exact path={["/", "/login"]} component={login} />
-        <PrivateRoute exact path="/empleados" component={empleados} />
+        <Route exact path="/empleados" component={empleados} />
         <Router
           path={"*"}
           component={() => (

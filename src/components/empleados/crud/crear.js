@@ -1,6 +1,6 @@
 import React from "react";
 import { request } from "../../helper/helper";
-import { Container, Form, Row } from "react-bootstrap";
+import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
@@ -60,7 +60,7 @@ export default class EmpleadosCrear extends React.Component {
         this.setState({ loading: false });
       })
       .catch((error) => {
-        console.error(err);
+        console.error(error);
         this.setState({ loading: true });
       });
   }
