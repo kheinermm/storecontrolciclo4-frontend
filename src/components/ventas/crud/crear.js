@@ -15,12 +15,13 @@ export default class VentasCrear extends React.Component {
       },
       loading: false,
       venta: {
-        codigo: "",
-        nombre: "",
-        categoria: "",
-        precio: "",
+        fecha: "",
+        codigo_ref: "",
+        nom_producto: "",
         cantidad: "",
-        stockMinimo: "",
+        precio_unit: "",
+        precio_total: "",
+        descuento: "",
       },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
