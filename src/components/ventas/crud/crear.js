@@ -1,10 +1,10 @@
 import React from "react";
 import { request } from "../../helper/helper";
-import { Container, Form, Row } from "react-bootstrap";
+import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
-export default class VentasCrear extends React.Component {
+export default class EmpleadosCrear extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,14 +14,13 @@ export default class VentasCrear extends React.Component {
         show: false,
       },
       loading: false,
-      venta: {
-        fecha: "",
-        codigo_ref: "",
-        nom_producto: "",
-        cantidad: "",
-        precio_unit: "",
-        precio_total: "",
-        descuento: "",
+      empleado: {
+        nombre: "",
+        apellido_p: "",
+        apellido_m: "",
+        telefono: "",
+        mail: "",
+        direccion: "",
       },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
@@ -29,31 +28,34 @@ export default class VentasCrear extends React.Component {
 
   setValue(index, value) {
     this.setState({
-      venta: {
-        ...this.state.venta,
+      empleado: {
+        ...this.state.empleado,
         [index]: value,
       },
     });
   }
 
-  guardarVentas() {
+  guardarEmpleados() {
+    console.log(this.state.empleados);
     this.setState({ loading: true });
     request
-      .post("/ventas", this.state.venta)
+      .post("/empleados", this.state.empleado)
       .then((response) => {
-        if (response.data.exito) {
-          this.setState({
-            redirect: response.data.exito,
-            message: {
-              text: response.data.msg,
-              show: true,
-            },
-          });
-        }
+
+        console.log(response.data);
+        // if (response.data.exito) {
+        //   this.setState({
+        //     redirect: response.data.exito,
+        //     message: {
+        //       text: response.data.msg,
+        //       show: true,
+        //     },
+        //   });
+        // }
         this.setState({ loading: false });
       })
       .catch((error) => {
-        console.error(err);
+        console.error(error);
         this.setState({ loading: true });
       });
   }
@@ -64,9 +66,10 @@ export default class VentasCrear extends React.Component {
     }
   }
 
+  
   render() {
     return (
-      <Container id="ventas-crear-container">
+      <Container id="empleados-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -77,59 +80,60 @@ export default class VentasCrear extends React.Component {
         <Loading show={this.state.loading} />
 
         <Row>
-          <h1>Crear Venta</h1>
+          <h1>Crear Empleado</h1>
         </Row>
         <Row>
-          <Form>
+        <Form>
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Codigo producto</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("codigo", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre Producto</Form.Label>
+              <Form.Label>Nombre empleado</Form.Label>
               <Form.Control
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Categoria</Form.Label>
+              <Form.Label>Primer apellido</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("categoria", e.target.value)}
+                onChange={(e) => this.setValue("apellido_p", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Precio</Form.Label>
+              <Form.Label>Segundo apellido</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("precio", e.target.value)}
+                onChange={(e) => this.setValue("apellido_m", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Cantidad</Form.Label>
+              <Form.Label>Telefono</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("cantidad", e.target.value)}
+                onChange={(e) => this.setValue("telefono", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Stock Minimo</Form.Label>
+              <Form.Label>Correo electronico</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("stockMinimo", e.target.value)}
+                onChange={(e) => this.setValue("mail", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Direccion</Form.Label>
+              <Form.Control
+                onChange={(e) => this.setValue("direccion", e.target.value)}
               />
             </Form.Group>
 
             <Button
               variant="primary"
-              onClick={() => console.log(this.guardarVentas)}
+              onClick={() => this.guardarEmpleados()}
             >
-              Guardar Producto
+              Guardar Empleado
             </Button>
           </Form>
+
         </Row>
       </Container>
     );

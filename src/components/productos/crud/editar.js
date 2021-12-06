@@ -1,35 +1,43 @@
 import React from "react";
 import { request } from "../../helper/helper";
-import { Container, Form, Row } from "react-bootstrap";
+import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
 import confirmationPrompts from "../../prompts/confirmation";
 
-export default class ProductosEditar extends React.Component {
+export default class EmpleadosEditar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idProducto: this.props.getIdProducto(),
+      idEmpleado: this.props.getIdEmpleado(),
       redirect: false,
       message: {
         text: "",
         show: false,
       },
       cofirmation: {
-        title: "Modificar producto",
-        text: "¿Esta seguro de modificar el producto?",
+        title: "Modificar empleado",
+        text: "¿Esta seguro de modificar el empleado?",
         show: false,
       },
       loading: false,
-      producto: {
-        codigo: "",
+      empleado: {
         nombre: "",
-        categoria: "",
-        precio: "",
-        cantidad: "",
-        stockMinimo: "",
+        apellido_p: "",
+        apellido_m: "",
+        telefono: "",
+        mail: "",
+        direccion: "",
       },
+      // producto: {
+      //   codigo: "",
+      //   nombre: "",
+      //   categoria: "",
+      //   precio: "",
+      //   cantidad: "",
+      //   stockMinimo: "",
+      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
     this.onCancel = this.onCancel.bind(this);
@@ -37,17 +45,17 @@ export default class ProductosEditar extends React.Component {
   }
 
   componentDidMount() {
-    this.getProducto();
+    this.getEmpleado();
   }
 
-  getProducto() {
+  getEmpleado() {
     this.setState({ loading: true });
     request
-      .get(`/productos/${this.state.idProducto}`)
+      .get(`/empleados/${this.state.idEmpleado}`)
       .then((response) => {
         console.log(response);
         this.setState({
-          producto: response.data,
+          empleado: response.data,
           loading: false,
         });
       })
@@ -59,17 +67,17 @@ export default class ProductosEditar extends React.Component {
 
   setValue(index, value) {
     this.setState({
-      producto: {
-        ...this.state.producto,
+      empleado: {
+        ...this.state.empleado,
         [index]: value,
       },
     });
   }
 
-  guardarProductos() {
+  guardarEmpleados() {
     this.setState({ loading: true });
     request
-      .post("/productos", this.state.producto)
+      .post("/empleados", this.state.empleado)
       .then((response) => {
         if (response.data.exito) {
           this.setState({
@@ -83,7 +91,7 @@ export default class ProductosEditar extends React.Component {
         this.setState({ loading: false });
       })
       .catch((error) => {
-        console.error(err);
+        console.error(error);
         this.setState({ loading: true });
       });
   }
@@ -111,7 +119,7 @@ export default class ProductosEditar extends React.Component {
           show: false,
         },
       },
-      this.guardarProductos()
+      this.guardarEmpleados()
     );
   }
 
@@ -123,9 +131,10 @@ export default class ProductosEditar extends React.Component {
     });
   }
 
+  
   render() {
     return (
-      <Container id="productos-crear-container">
+      <Container id="empleados-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -138,10 +147,10 @@ export default class ProductosEditar extends React.Component {
           title={this.state.confirmation.title}
           text={this.state.confirmation.text}
           onCancel={() => {
-            this.onCancel;
+            this.onCancel();
           }}
           onConfirm={() => {
-            this.onConfirm;
+            this.onConfirm();
           }}
         />
 
@@ -151,11 +160,71 @@ export default class ProductosEditar extends React.Component {
           <h1>Editar Producto</h1>
         </Row>
         <Row>
-          <Form>
+        <Form>
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                value={this.state.empleado.nombre}
+                onChange={(e) => this.setValue("nombre", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Apellido 1</Form.Label>
+              <Form.Control
+                value={this.state.empleado.apellido_p}
+                onChange={(e) => this.setValue("apellido_p", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Apellido 2</Form.Label>
+              <Form.Control
+                value={this.state.empleado.apellido_m}
+                onChange={(e) => this.setValue("apellido_m", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Telefono</Form.Label>
+              <Form.Control
+                value={this.state.empleado.telefono}
+                onChange={(e) => this.setValue("telefono", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Mail</Form.Label>
+              <Form.Control
+                value={this.state.empleado.mail}
+                onChange={(e) => this.setValue("mail", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Direccion</Form.Label>
+              <Form.Control
+                value={this.state.empleado.direccion}
+                onChange={(e) => this.setValue("direccion", e.target.value)}
+              />
+            </Form.Group>
+
+            <Button
+              variant="primary"
+              onClick={() =>
+                this.setState({
+                  confirmation: { ...this.state.confirmation, show: true },
+                })
+              }
+            >
+              Guardar Empleado
+            </Button>
+          </Form>
+          {/* <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
-                value={this.state.producto.codigo}
+                value={this.state.empleado.codigo}
                 onChange={(e) => this.setValue("codigo", e.target.value)}
               />
             </Form.Group>
@@ -163,7 +232,7 @@ export default class ProductosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Nombre Producto</Form.Label>
               <Form.Control
-                value={this.state.producto.nombre}
+                value={this.state.empleado.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
@@ -171,7 +240,7 @@ export default class ProductosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Categoria</Form.Label>
               <Form.Control
-                value={this.state.producto.categoria}
+                value={this.state.empleado.categoria}
                 onChange={(e) => this.setValue("categoria", e.target.value)}
               />
             </Form.Group>
@@ -179,7 +248,7 @@ export default class ProductosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Precio</Form.Label>
               <Form.Control
-                value={this.state.producto.precio}
+                value={this.state.empleado.precio}
                 onChange={(e) => this.setValue("precio", e.target.value)}
               />
             </Form.Group>
@@ -187,7 +256,7 @@ export default class ProductosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Cantidad</Form.Label>
               <Form.Control
-                value={this.state.producto.cantidad}
+                value={this.state.empleado.cantidad}
                 onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
@@ -195,7 +264,7 @@ export default class ProductosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Stock Minimo</Form.Label>
               <Form.Control
-                value={this.state.producto.stockMinimo}
+                value={this.state.empleado.stockMinimo}
                 onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>
@@ -210,7 +279,7 @@ export default class ProductosEditar extends React.Component {
             >
               Guardar Producto
             </Button>
-          </Form>
+          </Form> */}
         </Row>
       </Container>
     );

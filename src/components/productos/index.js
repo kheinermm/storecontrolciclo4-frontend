@@ -34,7 +34,7 @@ export default class Productos extends React.Component {
       <Container id="productos-container">
         <Row>
           <Nav
-            fill
+          
             variant="tabs"
             defaultActiveKey="/buscar"
             onSelect={(eventKey) => this.setState({ currentTab: eventKey })}

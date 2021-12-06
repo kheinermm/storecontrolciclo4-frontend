@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import login from "../login/login";
 import empleados from "../empleados/index";
+import productos from "../productos/index";
+import ventas from "../ventas/index";
 
 export default function AppRouter() {
   return (
@@ -11,6 +13,8 @@ export default function AppRouter() {
       <Switch>
         <Route exact path={["/", "/login"]} component={login} />
         <Route exact path="/empleados" component={empleados} />
+        <Route exact path="/productos" component={productos} />
+        <Route exact path="/ventas" component={ventas} />
         <Router
           path={"*"}
           component={() => (

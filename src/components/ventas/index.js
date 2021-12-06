@@ -34,7 +34,7 @@ export default class Ventas extends React.Component {
       <Container id="ventas-container">
         <Row>
           <Nav
-            fill
+          
             variant="tabs"
             defaultActiveKey="/buscar"
             onSelect={(eventKey) => this.setState({ currentTab: eventKey })}
