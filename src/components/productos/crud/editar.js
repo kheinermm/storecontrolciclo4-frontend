@@ -6,19 +6,19 @@ import MessagePrompt from "../../prompts/message";
 
 import confirmationPrompts from "../../prompts/confirmation";
 
-export default class EmpleadosEditar extends React.Component {
+export default class ProductosEditar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idEmpleado: this.props.getIdEmpleado(),
+      idEmpleado: this.props.getIdProducto(),
       redirect: false,
       message: {
         text: "",
         show: false,
       },
       cofirmation: {
-        title: "Modificar empleado",
-        text: "¿Esta seguro de modificar el empleado?",
+        title: "Modificar producto",
+        text: "¿Esta seguro de modificar el producto?",
         show: false,
       },
       loading: false,
@@ -45,13 +45,13 @@ export default class EmpleadosEditar extends React.Component {
   }
 
   componentDidMount() {
-    this.getEmpleado();
+    this.getProducto();
   }
 
-  getEmpleado() {
+  getProducto() {
     this.setState({ loading: true });
     request
-      .get(`/empleados/${this.state.idEmpleado}`)
+      .get(`/productos/${this.state.idProducto}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -59,25 +59,25 @@ export default class EmpleadosEditar extends React.Component {
           loading: false,
         });
       })
-      .catch((err) => {
-        console.error(err);
+      .catch((error) => {
+        console.error(error);
         this.setState({ loading: false });
       });
   }
 
   setValue(index, value) {
     this.setState({
-      empleado: {
-        ...this.state.empleado,
+      producto: {
+        ...this.state.producto,
         [index]: value,
       },
     });
   }
 
-  guardarEmpleados() {
+  guardarProductos() {
     this.setState({ loading: true });
     request
-      .post("/empleados", this.state.empleado)
+      .post("/productos", this.state.producto)
       .then((response) => {
         if (response.data.exito) {
           this.setState({
@@ -119,7 +119,7 @@ export default class EmpleadosEditar extends React.Component {
           show: false,
         },
       },
-      this.guardarEmpleados()
+      this.guardarProductos()
     );
   }
 
@@ -134,7 +134,7 @@ export default class EmpleadosEditar extends React.Component {
   
   render() {
     return (
-      <Container id="empleados-crear-container">
+      <Container id="productos-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -162,50 +162,50 @@ export default class EmpleadosEditar extends React.Component {
         <Row>
         <Form>
             <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Código</Form.Label>
+              <Form.Control
+                value={this.state.producto._id}
+                onChange={(e) => this.setValue("_id", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
-                value={this.state.empleado.nombre}
+                value={this.state.producto.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Apellido 1</Form.Label>
+              <Form.Label>Categoría</Form.Label>
               <Form.Control
-                value={this.state.empleado.apellido_p}
-                onChange={(e) => this.setValue("apellido_p", e.target.value)}
+                value={this.state.producto.categoria}
+                onChange={(e) => this.setValue("categoria", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Apellido 2</Form.Label>
+              <Form.Label>Precio</Form.Label>
               <Form.Control
-                value={this.state.empleado.apellido_m}
-                onChange={(e) => this.setValue("apellido_m", e.target.value)}
+                value={this.state.producto.precio}
+                onChange={(e) => this.setValue("precio", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Telefono</Form.Label>
+              <Form.Label>Cantidad</Form.Label>
               <Form.Control
-                value={this.state.empleado.telefono}
-                onChange={(e) => this.setValue("telefono", e.target.value)}
+                value={this.state.producto.cantidad}
+                onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Mail</Form.Label>
+              <Form.Label>Stock mínimo</Form.Label>
               <Form.Control
-                value={this.state.empleado.mail}
-                onChange={(e) => this.setValue("mail", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Direccion</Form.Label>
-              <Form.Control
-                value={this.state.empleado.direccion}
-                onChange={(e) => this.setValue("direccion", e.target.value)}
+                value={this.state.empleado.stockMinimo}
+                onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>
 
@@ -217,7 +217,7 @@ export default class EmpleadosEditar extends React.Component {
                 })
               }
             >
-              Guardar Empleado
+              Guardar Producto
             </Button>
           </Form>
           {/* <Form>
