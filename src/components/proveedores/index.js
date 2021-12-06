@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Nav, Row } from "react-bootstrap";
-import VentasBuscar from "./crud/buscar";
-import VentasCrear from "./crud/crear";
-import VentasEditar from "./crud/editar";
-import "./ventas.css";
+import ProveedoresBuscar from "./crud/buscar";
+import ProveedoresCrear from "./crud/crear";
+import ProveedoresEditar from "./crud/editar";
+import "./proveedores.css";
 
-export default class Ventas extends React.Component {
+export default class Proveedores extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,25 +13,25 @@ export default class Ventas extends React.Component {
       _id: null,
     };
     this.changeTab = this.changeTab.bind(this);
-    this.setIdVenta = this.setIdVenta.bind(this);
-    this.getIdVenta = this.getIdVenta.bind(this);
+    this.setIdProveedor = this.setIdProveedor.bind(this);
+    this.getIdProveedor = this.getIdProveedor.bind(this);
   }
 
   changeTab(tab) {
     this.setState({ currentTab: tab });
   }
 
-  setIdVenta(id) {
+  setIdProveedor(id) {
     this.setState({ _id: id });
   }
 
-  getIdVenta() {
+  getIdProveedor() {
     return this.state._id;
   }
 
   render() {
     return (
-      <Container id="ventas-container">
+      <Container id="proveedores-container">
         <Row>
           <Nav
           
@@ -49,16 +49,16 @@ export default class Ventas extends React.Component {
         </Row>
         <Row>
           {this.state.currentTab === "buscar" ? (
-            <VentasBuscar
+            <ProveedoresBuscar
               changeTab={this.changeTab}
-              setIdVenta={this.setIdVenta}
+              setIdProveedor={this.setIdProveedor}
             />
           ) : this.state.currentTab === "crear" ? (
-            <VentasCrear changeTab={this.changeTab} />
+            <ProveedoresCrear changeTab={this.changeTab} />
           ) : (
-            <VentasEditar
+            <ProveedoresEditar
               changeTab={this.changeTab}
-              getIdVenta={this.getIdVenta}
+              getIdProveedor={this.getIdProveedor}
             />
           )}
         </Row>

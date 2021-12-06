@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import "./navbar.css";
 import Cookies from "universal-cookie/es6";
+import Logo from "../logo/logo";
 
 const cookies = new Cookies();
 
@@ -30,13 +31,17 @@ export default class menu extends React.Component {
       <Navbar fixed="top" bg="primary" variant="dark" id="navbar">
         <Container>
           <Navbar.Brand href="#home" id="navbar-brand">
+            <Logo />
             Store Control <span id="usuario-sub-branm"></span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Nav>
+              <Nav.Link href="/productos">Productos</Nav.Link>
+              <Nav.Link href="/ventas">Ventas</Nav.Link>
+              <Nav.Link href="/proveedores">Proveedores</Nav.Link>
+            </Nav>
             <Nav className="me-auto" id="menu-usuario">
-              {/* <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">Link</Nav.Link> */}
               <DropdownButton id="dropdown-basic-button" title="Usuario">
                 <Dropdown.Header id="dropdown-header">
                   <Row class="row">

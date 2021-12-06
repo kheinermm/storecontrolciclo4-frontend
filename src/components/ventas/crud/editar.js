@@ -1,6 +1,6 @@
 import React from "react";
 import { request } from "../../helper/helper";
-import { Container, Form, Row } from "react-bootstrap";
+import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
@@ -91,7 +91,7 @@ export default class EmpleadosEditar extends React.Component {
         this.setState({ loading: false });
       })
       .catch((error) => {
-        console.error(err);
+        console.error(error);
         this.setState({ loading: true });
       });
   }
@@ -147,10 +147,10 @@ export default class EmpleadosEditar extends React.Component {
           title={this.state.confirmation.title}
           text={this.state.confirmation.text}
           onCancel={() => {
-            this.onCancel;
+            this.onCancel();
           }}
           onConfirm={() => {
-            this.onConfirm;
+            this.onConfirm();
           }}
         />
 

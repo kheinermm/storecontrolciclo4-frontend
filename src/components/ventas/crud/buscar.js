@@ -1,10 +1,11 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "../ventas.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
+import { request } from "../../helper/helper";
 
 const columns = [
   {
@@ -13,31 +14,30 @@ const columns = [
     hidden: true,
   },
   {
-    dataField: "codigo",
-    text: "Codigo Producto",
-    sort: true,
-  },
-  {
     dataField: "nombre",
-    text: "Nombre Producto",
+    text: "Nombre",
     sort: true,
   },
   {
-    dataField: "categoria",
-    text: "Categoria",
+    dataField: "apellido_p",
+    text: "Primer Apellido",
     sort: true,
   },
   {
-    dataField: "precio",
-    text: "Precio",
+    dataField: "apellido_m",
+    text: "Segundo Apellido",
   },
   {
-    dataField: "cantidad",
-    text: "Cantidad",
+    dataField: "telefono",
+    text: "Telefono",
   },
   {
-    dataField: "stockMinimo",
-    text: "Stock Minimo",
+    dataField: "mail",
+    text: "Correo electronico",
+  },
+  {
+    dataField: "direccion",
+    text: "Direccion",
   },
 ];
 
@@ -49,7 +49,7 @@ export default class VentasBuscar extends React.Component {
       loading: false,
       confirmation: {
         title: "Eliminar Venta",
-        text: "¿Esta seguro de eliminar la venta?",
+        text: "¿Esta seguro de eliminar el venta?",
         show: false,
       },
       message: {
@@ -65,7 +65,7 @@ export default class VentasBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    this.props.showIdVenta(row._id);
+    //this.props.showIdVenta(row._id);
     this.props.changeTab("editar");
   }
 

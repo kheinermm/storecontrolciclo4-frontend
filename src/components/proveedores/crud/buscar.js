@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import "../productos.css";
+import "../proveedores.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
 import Loading from "../../loading/loading";
@@ -41,15 +41,15 @@ const columns = [
   },
 ];
 
-export default class ProductosBuscar extends React.Component {
+export default class proveedoresBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idProducto: null,
+      idProveedor: null,
       loading: false,
       confirmation: {
-        title: "Eliminar Producto",
-        text: "¿Esta seguro de eliminar el producto?",
+        title: "Eliminar Proveedor",
+        text: "¿Esta seguro de eliminar el Proveedor?",
         show: false,
       },
       message: {
@@ -65,13 +65,13 @@ export default class ProductosBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    //this.props.showIdProducto(row._id);
+    //this.props.showIdProveedor(row._id);
     this.props.changeTab("editar");
   }
 
   onClickDeleteButton(row) {
     this.setState({
-      idProducto: row._id,
+      idProveedor: row._id,
       confirmation: {
         ...this.state.confirmation,
         show: true,
@@ -96,7 +96,7 @@ export default class ProductosBuscar extends React.Component {
           show: false,
         },
       },
-      this.eliminarProducto()
+      this.eliminarProveedor()
     );
   }
 
@@ -104,10 +104,10 @@ export default class ProductosBuscar extends React.Component {
     this.props.changeTab("buscar");
   }
 
-  eliminarProducto() {
+  eliminarProveedor() {
     this.setState({ loading: true });
     request
-      .delete(`/productos/${this.state.idProducto}`)
+      .delete(`/proveedores/${this.state.idProveedor}`)
       .then((response) => {
         this.setState({
           loading: false,
@@ -134,7 +134,7 @@ export default class ProductosBuscar extends React.Component {
 
   render() {
     return (
-      <Container id="productos-buscar-container">
+      <Container id="proveedores-buscar-container">
         <ConfirmationPrompts
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
@@ -153,12 +153,12 @@ export default class ProductosBuscar extends React.Component {
         <Loading show={this.props.loading} />
 
         <Row>
-          <h1>Buscar Productos</h1>
+          <h1>Buscar proveedores</h1>
           <hr />
         </Row>
         <Row>
           <DataGrid
-            url="/productos"
+            url="/proveedores"
             columns={columns}
             showEditButton={true}
             showDeleteButton={true}

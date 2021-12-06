@@ -6,23 +6,23 @@ import MessagePrompt from "../../prompts/message";
 
 import confirmationPrompts from "../../prompts/confirmation";
 
-export default class EmpleadosEditar extends React.Component {
+export default class ProveedoresEditar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idEmpleado: this.props.getIdEmpleado(),
+      idProveedor: this.props.getIdProveedor(),
       redirect: false,
       message: {
         text: "",
         show: false,
       },
       cofirmation: {
-        title: "Modificar empleado",
-        text: "¿Esta seguro de modificar el empleado?",
+        title: "Modificar Proveedor",
+        text: "¿Esta seguro de modificar el Proveedor?",
         show: false,
       },
       loading: false,
-      empleado: {
+      Proveedor: {
         nombre: "",
         apellido_p: "",
         apellido_m: "",
@@ -45,17 +45,17 @@ export default class EmpleadosEditar extends React.Component {
   }
 
   componentDidMount() {
-    this.getEmpleado();
+    this.getProveedor();
   }
 
-  getEmpleado() {
+  getProveedor() {
     this.setState({ loading: true });
     request
-      .get(`/empleados/${this.state.idEmpleado}`)
+      .get(`/Proveedores/${this.state.idProveedor}`)
       .then((response) => {
         console.log(response);
         this.setState({
-          empleado: response.data,
+          Proveedor: response.data,
           loading: false,
         });
       })
@@ -67,17 +67,17 @@ export default class EmpleadosEditar extends React.Component {
 
   setValue(index, value) {
     this.setState({
-      empleado: {
-        ...this.state.empleado,
+      Proveedor: {
+        ...this.state.Proveedor,
         [index]: value,
       },
     });
   }
 
-  guardarEmpleados() {
+  guardarProveedores() {
     this.setState({ loading: true });
     request
-      .post("/empleados", this.state.empleado)
+      .post("/Proveedores", this.state.Proveedor)
       .then((response) => {
         if (response.data.exito) {
           this.setState({
@@ -119,7 +119,7 @@ export default class EmpleadosEditar extends React.Component {
           show: false,
         },
       },
-      this.guardarEmpleados()
+      this.guardarProveedores()
     );
   }
 
@@ -134,7 +134,7 @@ export default class EmpleadosEditar extends React.Component {
   
   render() {
     return (
-      <Container id="empleados-crear-container">
+      <Container id="Proveedores-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -164,7 +164,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
-                value={this.state.empleado.nombre}
+                value={this.state.Proveedor.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
@@ -172,7 +172,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Apellido 1</Form.Label>
               <Form.Control
-                value={this.state.empleado.apellido_p}
+                value={this.state.Proveedor.apellido_p}
                 onChange={(e) => this.setValue("apellido_p", e.target.value)}
               />
             </Form.Group>
@@ -180,7 +180,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Apellido 2</Form.Label>
               <Form.Control
-                value={this.state.empleado.apellido_m}
+                value={this.state.Proveedor.apellido_m}
                 onChange={(e) => this.setValue("apellido_m", e.target.value)}
               />
             </Form.Group>
@@ -188,7 +188,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Telefono</Form.Label>
               <Form.Control
-                value={this.state.empleado.telefono}
+                value={this.state.Proveedor.telefono}
                 onChange={(e) => this.setValue("telefono", e.target.value)}
               />
             </Form.Group>
@@ -196,7 +196,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Mail</Form.Label>
               <Form.Control
-                value={this.state.empleado.mail}
+                value={this.state.Proveedor.mail}
                 onChange={(e) => this.setValue("mail", e.target.value)}
               />
             </Form.Group>
@@ -204,7 +204,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Direccion</Form.Label>
               <Form.Control
-                value={this.state.empleado.direccion}
+                value={this.state.Proveedor.direccion}
                 onChange={(e) => this.setValue("direccion", e.target.value)}
               />
             </Form.Group>
@@ -217,14 +217,14 @@ export default class EmpleadosEditar extends React.Component {
                 })
               }
             >
-              Guardar Empleado
+              Guardar Proveedor
             </Button>
           </Form>
           {/* <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
-                value={this.state.empleado.codigo}
+                value={this.state.Proveedor.codigo}
                 onChange={(e) => this.setValue("codigo", e.target.value)}
               />
             </Form.Group>
@@ -232,7 +232,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Nombre Producto</Form.Label>
               <Form.Control
-                value={this.state.empleado.nombre}
+                value={this.state.Proveedor.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
@@ -240,7 +240,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Categoria</Form.Label>
               <Form.Control
-                value={this.state.empleado.categoria}
+                value={this.state.Proveedor.categoria}
                 onChange={(e) => this.setValue("categoria", e.target.value)}
               />
             </Form.Group>
@@ -248,7 +248,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Precio</Form.Label>
               <Form.Control
-                value={this.state.empleado.precio}
+                value={this.state.Proveedor.precio}
                 onChange={(e) => this.setValue("precio", e.target.value)}
               />
             </Form.Group>
@@ -256,7 +256,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Cantidad</Form.Label>
               <Form.Control
-                value={this.state.empleado.cantidad}
+                value={this.state.Proveedor.cantidad}
                 onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
@@ -264,7 +264,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Stock Minimo</Form.Label>
               <Form.Control
-                value={this.state.empleado.stockMinimo}
+                value={this.state.Proveedor.stockMinimo}
                 onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>
