@@ -6,38 +6,30 @@ import MessagePrompt from "../../prompts/message";
 
 import confirmationPrompts from "../../prompts/confirmation";
 
-export default class EmpleadosEditar extends React.Component {
+export default class ProductosEditar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idEmpleado: this.props.getIdEmpleado(),
+      idProducto: this.props.getIdProducto(),
       redirect: false,
       message: {
         text: "",
         show: false,
       },
       cofirmation: {
-        title: "Modificar empleado",
-        text: "¿Esta seguro de modificar el empleado?",
+        title: "Modificar producto",
+        text: "¿Esta seguro de modificar el producto?",
         show: false,
       },
       loading: false,
-      empleado: {
+      producto: {
+        codigo: "",
         nombre: "",
-        apellido_p: "",
-        apellido_m: "",
-        telefono: "",
-        mail: "",
-        direccion: "",
+        categoria: "",
+        precio: "",
+        cantidad: "",
+        stockMinimo: "",
       },
-      // producto: {
-      //   codigo: "",
-      //   nombre: "",
-      //   categoria: "",
-      //   precio: "",
-      //   cantidad: "",
-      //   stockMinimo: "",
-      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
     this.onCancel = this.onCancel.bind(this);
@@ -45,17 +37,17 @@ export default class EmpleadosEditar extends React.Component {
   }
 
   componentDidMount() {
-    this.getEmpleado();
+    this.getProducto();
   }
 
-  getEmpleado() {
+  getProducto() {
     this.setState({ loading: true });
     request
-      .get(`/empleados/${this.state.idEmpleado}`)
+      .get(`/productos/${this.state.idProducto}`)
       .then((response) => {
         console.log(response);
         this.setState({
-          empleado: response.data,
+          producto: response.data,
           loading: false,
         });
       })
@@ -67,17 +59,17 @@ export default class EmpleadosEditar extends React.Component {
 
   setValue(index, value) {
     this.setState({
-      empleado: {
-        ...this.state.empleado,
+      producto: {
+        ...this.state.producto,
         [index]: value,
       },
     });
   }
 
-  guardarEmpleados() {
+  guardarProductos() {
     this.setState({ loading: true });
     request
-      .post("/empleados", this.state.empleado)
+      .post("/productos", this.state.producto)
       .then((response) => {
         if (response.data.exito) {
           this.setState({
@@ -119,7 +111,7 @@ export default class EmpleadosEditar extends React.Component {
           show: false,
         },
       },
-      this.guardarEmpleados()
+      this.guardarProductos()
     );
   }
 
@@ -131,10 +123,10 @@ export default class EmpleadosEditar extends React.Component {
     });
   }
 
-  
+
   render() {
     return (
-      <Container id="empleados-crear-container">
+      <Container id="productos-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -160,71 +152,12 @@ export default class EmpleadosEditar extends React.Component {
           <h1>Editar Producto</h1>
         </Row>
         <Row>
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                value={this.state.empleado.nombre}
-                onChange={(e) => this.setValue("nombre", e.target.value)}
-              />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Apellido 1</Form.Label>
-              <Form.Control
-                value={this.state.empleado.apellido_p}
-                onChange={(e) => this.setValue("apellido_p", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Apellido 2</Form.Label>
-              <Form.Control
-                value={this.state.empleado.apellido_m}
-                onChange={(e) => this.setValue("apellido_m", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Telefono</Form.Label>
-              <Form.Control
-                value={this.state.empleado.telefono}
-                onChange={(e) => this.setValue("telefono", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Mail</Form.Label>
-              <Form.Control
-                value={this.state.empleado.mail}
-                onChange={(e) => this.setValue("mail", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Direccion</Form.Label>
-              <Form.Control
-                value={this.state.empleado.direccion}
-                onChange={(e) => this.setValue("direccion", e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              onClick={() =>
-                this.setState({
-                  confirmation: { ...this.state.confirmation, show: true },
-                })
-              }
-            >
-              Guardar Empleado
-            </Button>
-          </Form>
-          {/* <Form>
+          <Form>
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Codigo producto</Form.Label>
               <Form.Control
-                value={this.state.empleado.codigo}
+                value={this.state.producto.codigo}
                 onChange={(e) => this.setValue("codigo", e.target.value)}
               />
             </Form.Group>
@@ -232,7 +165,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Nombre Producto</Form.Label>
               <Form.Control
-                value={this.state.empleado.nombre}
+                value={this.state.producto.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
@@ -240,7 +173,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Categoria</Form.Label>
               <Form.Control
-                value={this.state.empleado.categoria}
+                value={this.state.producto.categoria}
                 onChange={(e) => this.setValue("categoria", e.target.value)}
               />
             </Form.Group>
@@ -248,7 +181,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Precio</Form.Label>
               <Form.Control
-                value={this.state.empleado.precio}
+                value={this.state.producto.precio}
                 onChange={(e) => this.setValue("precio", e.target.value)}
               />
             </Form.Group>
@@ -256,7 +189,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Cantidad</Form.Label>
               <Form.Control
-                value={this.state.empleado.cantidad}
+                value={this.state.producto.cantidad}
                 onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
@@ -264,7 +197,7 @@ export default class EmpleadosEditar extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Stock Minimo</Form.Label>
               <Form.Control
-                value={this.state.empleado.stockMinimo}
+                value={this.state.producto.stockMinimo}
                 onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>
@@ -279,7 +212,7 @@ export default class EmpleadosEditar extends React.Component {
             >
               Guardar Producto
             </Button>
-          </Form> */}
+          </Form>
         </Row>
       </Container>
     );

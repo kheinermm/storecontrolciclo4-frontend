@@ -36,6 +36,7 @@ export default class Productos extends React.Component {
           <Nav
           
             variant="tabs"
+            role="tablist"
             defaultActiveKey="/buscar"
             onSelect={(eventKey) => this.setState({ currentTab: eventKey })}
           >
@@ -45,20 +46,23 @@ export default class Productos extends React.Component {
             <Nav.Item>
               <Nav.Link eventKey="crear">Crear</Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link disabled eventKey="editar">Editar</Nav.Link>
+            </Nav.Item>
           </Nav>
         </Row>
         <Row>
           {this.state.currentTab === "buscar" ? (
             <ProductosBuscar
               changeTab={this.changeTab}
-              setIdProducto={this.setIdProducto}
+              setIdProducto={this.setIdProducto(this.getIdProducto())}
             />
           ) : this.state.currentTab === "crear" ? (
             <ProductosCrear changeTab={this.changeTab} />
           ) : (
             <ProductosEditar
-              changeTab={this.changeTab}
-              getIdProducto={this.getIdProducto}
+              changeTab={this.changeTab("editar")}
+              getIdProducto={this.getIdProducto()}
             />
           )}
         </Row>

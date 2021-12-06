@@ -14,30 +14,31 @@ const columns = [
     hidden: true,
   },
   {
+    dataField: "codigo",
+    text: "Codigo",
+  },
+  {
     dataField: "nombre",
-    text: "Nombre",
+    text: "Nombre Producto",
     sort: true,
   },
   {
-    dataField: "apellido_p",
-    text: "Primer Apellido",
+    dataField: "categoria",
+    text: "Categoria",
     sort: true,
   },
   {
-    dataField: "apellido_m",
-    text: "Segundo Apellido",
+    dataField: "precio",
+    text: "Precio",
   },
   {
-    dataField: "telefono",
-    text: "Telefono",
+    dataField: "cantidad",
+    text: "Cantidad",
+    sort: true,
   },
   {
-    dataField: "mail",
-    text: "Correo electronico",
-  },
-  {
-    dataField: "direccion",
-    text: "Direccion",
+    dataField: "stockMinimo",
+    text: "Stock Minimo",
   },
 ];
 
@@ -65,7 +66,7 @@ export default class ProductosBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    //this.props.showIdProducto(row._id);
+    this.props.setIdProducto(row._id);
     this.props.changeTab("editar");
   }
 
@@ -139,15 +140,15 @@ export default class ProductosBuscar extends React.Component {
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
           text={this.state.confirmation.text}
-          onCancel={this.onCancel}
-          onConfirm={this.onConfirm}
+          onCancel={this.onCancel()}
+          onConfirm={this.onConfirm()}
         />
 
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
           duration={2000}
-          onExited={this.onExitedMessage}
+          onExited={this.onExitedMessage()}
         />
 
         <Loading show={this.props.loading} />
@@ -162,8 +163,8 @@ export default class ProductosBuscar extends React.Component {
             columns={columns}
             showEditButton={true}
             showDeleteButton={true}
-            onClickEditButton={this.onClickEditButton}
-            onClickDeleteButton={this.onClickDeleteButton}
+            // onClickEditButton={this.onClickEditButton()}
+            // onClickDeleteButton={this.onClickDeleteButton()}
           />
         </Row>
       </Container>
