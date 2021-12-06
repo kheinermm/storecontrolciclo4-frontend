@@ -39,7 +39,7 @@ export default class menu extends React.Component {
             <Nav>
               <Nav.Link href="/productos">Productos</Nav.Link>
               <Nav.Link href="/ventas">Ventas</Nav.Link>
-              <Nav.Link href="/empleados">Empleados</Nav.Link>
+              <Nav.Link href="/proveedores">Proveedores</Nav.Link>
             </Nav>
             <Nav className="me-auto" id="menu-usuario">
               <DropdownButton id="dropdown-basic-button" title="Usuario">
