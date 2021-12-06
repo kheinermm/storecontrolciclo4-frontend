@@ -10,22 +10,22 @@ import { request } from "../../helper/helper";
 const columns = [
   {
     dataField: "_id",
-    text: "Código",
+    text: "id",
     hidden: true,
   },
   {
-    dataField: "nombre",
-    text: "Nombre",
+    dataField: "codigo",
+    text: "Codigo",
     sort: true,
   },
   {
     dataField: "categoria",
-    text: "Categoría",
+    text: "Categoria",
     sort: true,
   },
   {
-    dataField: "apellido_m",
-    text: "Segundo Apellido",
+    dataField: "precio",
+    text: "Precio",
   },
   {
     dataField: "cantidad",
@@ -33,7 +33,7 @@ const columns = [
   },
   {
     dataField: "stock_minimo",
-    text: "Stock mínimo",
+    text: "Stock minimo",
   },
 ];
 
