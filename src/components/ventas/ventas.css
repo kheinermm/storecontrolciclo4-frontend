@@ -1,8 +1,8 @@
-#empleados-container {
+#ventas-container {
     margin-top: 150px;
 }
 
-#empleados-buscar-container, #empleados-crear-container{
+#ventas-buscar-container, #ventas-crear-container{
     margin-top: 50px;
 }
 
@@ -20,7 +20,7 @@
     font-size: 0;
 }
 
-#empleados-crear-container .form-label {
+#ventas-crear-container .form-label {
     float: left;
     margin-bottom: 10px;
 }

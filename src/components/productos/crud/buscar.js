@@ -41,15 +41,15 @@ const columns = [
   },
 ];
 
-export default class EmpleadosBuscar extends React.Component {
+export default class ProductosBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idEmpleado: null,
+      idProducto: null,
       loading: false,
       confirmation: {
-        title: "Eliminar Empleado",
-        text: "¿Esta seguro de eliminar el empleado?",
+        title: "Eliminar Producto",
+        text: "¿Esta seguro de eliminar el producto?",
         show: false,
       },
       message: {
@@ -65,13 +65,13 @@ export default class EmpleadosBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    //this.props.showIdEmpleado(row._id);
+    //this.props.showIdProducto(row._id);
     this.props.changeTab("editar");
   }
 
   onClickDeleteButton(row) {
     this.setState({
-      idEmpleado: row._id,
+      idProducto: row._id,
       confirmation: {
         ...this.state.confirmation,
         show: true,
@@ -96,7 +96,7 @@ export default class EmpleadosBuscar extends React.Component {
           show: false,
         },
       },
-      this.eliminarEmpleado()
+      this.eliminarProducto()
     );
   }
 
@@ -104,10 +104,10 @@ export default class EmpleadosBuscar extends React.Component {
     this.props.changeTab("buscar");
   }
 
-  eliminarEmpleado() {
+  eliminarProducto() {
     this.setState({ loading: true });
     request
-      .delete(`/productos/${this.state.idEmpleado}`)
+      .delete(`/productos/${this.state.idProducto}`)
       .then((response) => {
         this.setState({
           loading: false,
@@ -153,7 +153,7 @@ export default class EmpleadosBuscar extends React.Component {
         <Loading show={this.props.loading} />
 
         <Row>
-          <h1>Buscar Empleados</h1>
+          <h1>Buscar Productos</h1>
           <hr />
         </Row>
         <Row>
