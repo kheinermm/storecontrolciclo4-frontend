@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { isUndefined } from "util";
 
-// npm install react-bootstrap-table-next react-bootstrap-table2-toolkit react-bootstrap-table2-filter react-bootstrap-table2-editor react-bootstrap-table2-paginator --save
+// npm install react-bootstrap-table-next react-bootstrap-table2-toolkit react-bootstrap-table2-filter react-bootstrap-table2-editor react-bootstrap-table2-paginator --save --force
 
 // guia, documentacion de react-bootstrap-table2
 // https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
