@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Button, Col } from "react-bootstrap";
 import "../productos.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
@@ -19,6 +19,11 @@ const columns = [
     sort: true,
   },
   {
+    dataField: "nombre",
+    text: "Nombre",
+    sort: true,
+  },
+  {
     dataField: "categoria",
     text: "Categoria",
     sort: true,
@@ -32,7 +37,7 @@ const columns = [
     text: "Cantidad",
   },
   {
-    dataField: "stock_minimo",
+    dataField: "stockMinimo",
     text: "Stock minimo",
   },
 ];
