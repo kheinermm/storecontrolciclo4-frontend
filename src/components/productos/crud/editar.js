@@ -10,7 +10,7 @@ export default class ProductosEditar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idEmpleado: this.props.getIdProducto(),
+      idProducto: this.props.getIdProducto(),
       redirect: false,
       message: {
         text: "",
@@ -22,23 +22,15 @@ export default class ProductosEditar extends React.Component {
         show: false,
       },
       loading: false,
-      empleado: {
+      producto: {
+        codigo: "",
         nombre: "",
-        apellido_p: "",
-        apellido_m: "",
-        telefono: "",
-        mail: "",
-        direccion: "",
+        categoria: "",
+        precio: "",
+        cantidad: "",
+        stockMinimo: "",
       },
-      // producto: {
-      //   codigo: "",
-      //   nombre: "",
-      //   categoria: "",
-      //   precio: "",
-      //   cantidad: "",
-      //   stockMinimo: "",
-      // },
-    };
+     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
     this.onCancel = this.onCancel.bind(this);
     this.onConfirm = this.onConfirm.bind(this);
@@ -55,7 +47,7 @@ export default class ProductosEditar extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          empleado: response.data,
+          producto: response.data,
           loading: false,
         });
       })
@@ -162,10 +154,10 @@ export default class ProductosEditar extends React.Component {
         <Row>
         <Form>
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Código</Form.Label>
+              <Form.Label>Codigo</Form.Label>
               <Form.Control
                 value={this.state.producto._id}
-                onChange={(e) => this.setValue("_id", e.target.value)}
+                onChange={(e) => this.setValue("codigo", e.target.value)}
               />
             </Form.Group>
 
@@ -178,7 +170,7 @@ export default class ProductosEditar extends React.Component {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Categoría</Form.Label>
+              <Form.Label>Categoria</Form.Label>
               <Form.Control
                 value={this.state.producto.categoria}
                 onChange={(e) => this.setValue("categoria", e.target.value)}
@@ -202,9 +194,9 @@ export default class ProductosEditar extends React.Component {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Stock mínimo</Form.Label>
+              <Form.Label>Stock minimo</Form.Label>
               <Form.Control
-                value={this.state.empleado.stockMinimo}
+                value={this.state.producto.stockMinimo}
                 onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>

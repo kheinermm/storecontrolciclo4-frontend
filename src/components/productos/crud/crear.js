@@ -14,13 +14,13 @@ export default class ProductosCrear extends React.Component {
         show: false,
       },
       loading: false,
-      empleado: {
+      producto: {
+        codigo: "",
         nombre: "",
-        apellido_p: "",
-        apellido_m: "",
-        telefono: "",
-        mail: "",
-        direccion: "",
+        categoria: "",
+        precio: "",
+        cantidad: "",
+        stockMinimo: "",
       },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
@@ -85,7 +85,7 @@ export default class ProductosCrear extends React.Component {
         <Row>
         <Form>
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Código</Form.Label>
+              <Form.Label>Codigo</Form.Label>
               <Form.Control
                 onChange={(e) => this.setValue("_id", e.target.value)}
               />
@@ -99,7 +99,7 @@ export default class ProductosCrear extends React.Component {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Categoría</Form.Label>
+              <Form.Label>Categoria</Form.Label>
               <Form.Control
                 onChange={(e) => this.setValue("categoria", e.target.value)}
               />
