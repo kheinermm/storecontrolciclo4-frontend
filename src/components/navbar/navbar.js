@@ -31,15 +31,17 @@ export default class menu extends React.Component {
       <Navbar fixed="top" bg="primary" variant="dark" id="navbar">
         <Container>
           <Navbar.Brand href="#home" id="navbar-brand">
-            <Logo/>
+            <Logo />
             Store Control <span id="usuario-sub-branm"></span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto" id="menu-usuario">
+            <Nav>
               <Nav.Link href="/productos">Productos</Nav.Link>
               <Nav.Link href="/ventas">Ventas</Nav.Link>
-              <Nav.Link href="/empleados">Empleados</Nav.Link> 
+              <Nav.Link href="/empleados">Empleados</Nav.Link>
+            </Nav>
+            <Nav className="me-auto" id="menu-usuario">
               <DropdownButton id="dropdown-basic-button" title="Usuario">
                 <Dropdown.Header id="dropdown-header">
                   <Row class="row">

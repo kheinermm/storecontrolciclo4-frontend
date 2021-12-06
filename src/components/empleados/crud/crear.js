@@ -4,7 +4,7 @@ import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
-export default class EmpleadosCrear extends React.Component {
+export default class ProveedoresCrear extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ export default class EmpleadosCrear extends React.Component {
         show: false,
       },
       loading: false,
-      empleado: {
+      Proveedor: {
         nombre: "",
         apellido_p: "",
         apellido_m: "",
@@ -28,18 +28,18 @@ export default class EmpleadosCrear extends React.Component {
 
   setValue(index, value) {
     this.setState({
-      empleado: {
-        ...this.state.empleado,
+      Proveedor: {
+        ...this.state.Proveedor,
         [index]: value,
       },
     });
   }
 
-  guardarEmpleados() {
-    console.log(this.state.empleados);
+  guardarProveedores() {
+    console.log(this.state.Proveedores);
     this.setState({ loading: true });
     request
-      .post("/empleados", this.state.empleado)
+      .post("/Proveedores", this.state.Proveedor)
       .then((response) => {
 
         console.log(response.data);
@@ -69,7 +69,7 @@ export default class EmpleadosCrear extends React.Component {
   
   render() {
     return (
-      <Container id="empleados-crear-container">
+      <Container id="Proveedores-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -80,12 +80,12 @@ export default class EmpleadosCrear extends React.Component {
         <Loading show={this.state.loading} />
 
         <Row>
-          <h1>Crear Empleado</h1>
+          <h1>Crear Proveedor</h1>
         </Row>
         <Row>
         <Form>
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre empleado</Form.Label>
+              <Form.Label>Nombre Proveedor</Form.Label>
               <Form.Control
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
@@ -128,9 +128,9 @@ export default class EmpleadosCrear extends React.Component {
 
             <Button
               variant="primary"
-              onClick={() => this.guardarEmpleados()}
+              onClick={() => this.guardarProveedores()}
             >
-              Guardar Empleado
+              Guardar Proveedor
             </Button>
           </Form>
 

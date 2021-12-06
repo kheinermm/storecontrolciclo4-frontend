@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Nav, Row } from "react-bootstrap";
-import EmpleadosBuscar from "./crud/buscar";
-import EmpleadosCrear from "./crud/crear";
-import EmpleadosEditar from "./crud/editar";
-import "./empleados.css";
+import ProveedoresBuscar from "./crud/buscar";
+import ProveedoresCrear from "./crud/crear";
+import ProveedoresEditar from "./crud/editar";
+import "./proveedores.css";
 
-export default class Empleados extends React.Component {
+export default class Proveedores extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,25 +13,25 @@ export default class Empleados extends React.Component {
       _id: null,
     };
     this.changeTab = this.changeTab.bind(this);
-    this.setIdEmpleado = this.setIdEmpleado.bind(this);
-    this.getIdEmpleado = this.getIdEmpleado.bind(this);
+    this.setIdProveedor = this.setIdProveedor.bind(this);
+    this.getIdProveedor = this.getIdProveedor.bind(this);
   }
 
   changeTab(tab) {
     this.setState({ currentTab: tab });
   }
 
-  setIdEmpleado(id) {
+  setIdProveedor(id) {
     this.setState({ _id: id });
   }
 
-  getIdEmpleado() {
+  getIdProveedor() {
     return this.state._id;
   }
 
   render() {
     return (
-      <Container id="empleados-container">
+      <Container id="proveedores-container">
         <Row>
           <Nav
           
@@ -49,16 +49,16 @@ export default class Empleados extends React.Component {
         </Row>
         <Row>
           {this.state.currentTab === "buscar" ? (
-            <EmpleadosBuscar
+            <ProveedoresBuscar
               changeTab={this.changeTab}
-              setIdEmpleado={this.setIdEmpleado}
+              setIdProveedor={this.setIdProveedor}
             />
           ) : this.state.currentTab === "crear" ? (
-            <EmpleadosCrear changeTab={this.changeTab} />
+            <ProveedoresCrear changeTab={this.changeTab} />
           ) : (
-            <EmpleadosEditar
+            <ProveedoresEditar
               changeTab={this.changeTab}
-              getIdEmpleado={this.getIdEmpleado}
+              getIdProveedor={this.getIdProveedor}
             />
           )}
         </Row>
