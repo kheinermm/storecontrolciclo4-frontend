@@ -1,160 +1,61 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import "../proveedores.css";
-import DataGrid from "../../grid/grid";
-import ConfirmationPrompts from "../../prompts/confirmation";
-import Loading from "../../loading/loading";
-import MessagePrompt from "../../prompts/message";
+import "./seguimiento.css";
+import DataGrid from "../grid/grid";
+import Loading from "../loading/loading";
+import MessagePrompt from "../prompts/message";
 
 const columns = [
+
   {
     dataField: "_id",
     text: "ID",
     hidden: true,
   },
   {
+    dataField: "codigo",
+    text: "Codigo Producto",
+    sort: true,
+  },
+  {
     dataField: "nombre",
-    text: "Nombre",
+    text: "Nombre Producto",
     sort: true,
   },
   {
-    dataField: "apellido_p",
-    text: "Primer Apellido",
+    dataField: "categoria",
+    text: "Categoria",
     sort: true,
   },
   {
-    dataField: "apellido_m",
-    text: "Segundo Apellido",
+    dataField: "precio",
+    text: "Precio",
   },
   {
-    dataField: "telefono",
-    text: "Telefono",
+    dataField: "cantidad",
+    text: "Cantidad",
   },
   {
-    dataField: "mail",
-    text: "Correo electronico",
+    dataField: "stockMinimo",
+    text: "Stock Minimo",
   },
-  {
-    dataField: "direccion",
-    text: "Direccion",
-  },
-  // {
-  //   dataField: "_id",
-  //   text: "ID",
-  //   hidden: true,
-  // },
-  // {
-  //   dataField: "codigo",
-  //   text: "Codigo Producto",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "nombre",
-  //   text: "Nombre Producto",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "categoria",
-  //   text: "Categoria",
-  //   sort: true,
-  // },
-  // {
-  //   dataField: "precio",
-  //   text: "Precio",
-  // },
-  // {
-  //   dataField: "cantidad",
-  //   text: "Cantidad",
-  // },
-  // {
-  //   dataField: "stockMinimo",
-  //   text: "Stock Minimo",
-  // },
 ];
 
 export default class ProveedoresBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idProveedor: null,
       loading: false,
-      confirmation: {
-        title: "Eliminar Proveedor",
-        text: "¿Esta seguro de eliminar el Proveedor?",
-        show: false,
-      },
       message: {
         text: "",
         show: false,
       },
     };
-    this.onClickEditButton = this.onClickEditButton.bind(this);
-    this.onClickDeleteButton = this.onClickDeleteButton.bind(this);
     this.onExitedMessage = this.onExitedMessage.bind(this);
-    this.onCancel = this.onCancel.bind(this);
-    this.onConfirm = this.onConfirm.bind(this);
-  }
-
-  onClickEditButton(row) {
-    this.props.showIdProveedor(row._id);
-    this.props.changeTab("editar");
-  }
-
-  onClickDeleteButton(row) {
-    this.setState({
-      idProveedor: row._id,
-      confirmation: {
-        ...this.state.confirmation,
-        show: true,
-      },
-    });
-  }
-
-  onCancel() {
-    this.setState({
-      confirmation: {
-        ...this.state.confirmation,
-        show: false,
-      },
-    });
-  }
-
-  onConfirm() {
-    this.setState(
-      {
-        confirmation: {
-          ...this.state.confirmation,
-          show: false,
-        },
-      },
-      this.eliminarProveedor()
-    );
   }
 
   onExitedMessage() {
     this.props.changeTab("buscar");
-  }
-
-  eliminarProveedor() {
-    this.setState({ loading: true });
-    request
-      .delete(`/proveedores/${this.state.idProveedor}`)
-      .then((response) => {
-        this.setState({
-          loading: false,
-          message: {
-            text: response.data.msg,
-            show: true,
-          },
-        });
-        if (response.data.exito) {
-          this.reloadPage();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({ loading: false });
-      });
   }
 
   reloadPage() {
@@ -166,13 +67,6 @@ export default class ProveedoresBuscar extends React.Component {
   render() {
     return (
       <Container id="proveedores-buscar-container">
-        <ConfirmationPrompts
-          show={this.state.confirmation.show}
-          title={this.state.confirmation.title}
-          text={this.state.confirmation.text}
-          onCancel={this.onCancel}
-          onConfirm={this.onConfirm}
-        />
 
         <MessagePrompt
           text={this.state.message.text}
@@ -184,17 +78,13 @@ export default class ProveedoresBuscar extends React.Component {
         <Loading show={this.props.loading} />
 
         <Row>
-          <h1>Buscar Proveedores</h1>
+          <h1>SEGUIMIENTO Y NOVEDADES</h1>
           <hr />
         </Row>
         <Row>
           <DataGrid
-            url="/proveedores"
+            url="/productos"
             columns={columns}
-            showEditButton={true}
-            showDeleteButton={true}
-            onClickEditButton={this.onClickEditButton}
-            onClickDeleteButton={this.onClickDeleteButton}
           />
         </Row>
       </Container>
