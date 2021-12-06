@@ -22,14 +22,6 @@ export default class EmpleadosCrear extends React.Component {
         mail: "",
         direccion: "",
       },
-      // producto: {
-      //   codigo: "",
-      //   nombre: "",
-      //   categoria: "",
-      //   precio: "",
-      //   cantidad: "",
-      //   stockMinimo: "",
-      // },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
   }
@@ -44,19 +36,22 @@ export default class EmpleadosCrear extends React.Component {
   }
 
   guardarEmpleados() {
+    console.log(this.state.empleados);
     this.setState({ loading: true });
     request
       .post("/empleados", this.state.empleado)
       .then((response) => {
-        if (response.data.exito) {
-          this.setState({
-            redirect: response.data.exito,
-            message: {
-              text: response.data.msg,
-              show: true,
-            },
-          });
-        }
+
+        console.log(response.data);
+        // if (response.data.exito) {
+        //   this.setState({
+        //     redirect: response.data.exito,
+        //     message: {
+        //       text: response.data.msg,
+        //       show: true,
+        //     },
+        //   });
+        // }
         this.setState({ loading: false });
       })
       .catch((error) => {
@@ -133,61 +128,12 @@ export default class EmpleadosCrear extends React.Component {
 
             <Button
               variant="primary"
-              onClick={() => console.log(this.guardarEmpleados)}
+              onClick={() => this.guardarEmpleados()}
             >
               Guardar Empleado
             </Button>
           </Form>
-          {/* <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Codigo producto</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("codigo", e.target.value)}
-              />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre Producto</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("nombre", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Categoria</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("categoria", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Precio</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("precio", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Cantidad</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("cantidad", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Stock Minimo</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("stockMinimo", e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              onClick={() => console.log(this.guardarEmpleados)}
-            >
-              Guardar Producto
-            </Button>
-          </Form> */}
         </Row>
       </Container>
     );

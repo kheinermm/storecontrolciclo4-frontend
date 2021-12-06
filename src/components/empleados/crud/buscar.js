@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "../empleados.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
@@ -65,7 +65,7 @@ export default class EmpleadosBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    this.props.showIdEmpleado(row._id);
+    //this.props.showIdEmpleado(row._id);
     this.props.changeTab("editar");
   }
 

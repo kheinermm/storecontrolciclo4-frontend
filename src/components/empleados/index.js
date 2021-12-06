@@ -34,7 +34,7 @@ export default class Empleados extends React.Component {
       <Container id="empleados-container">
         <Row>
           <Nav
-            fill
+          
             variant="tabs"
             defaultActiveKey="/buscar"
             onSelect={(eventKey) => this.setState({ currentTab: eventKey })}
