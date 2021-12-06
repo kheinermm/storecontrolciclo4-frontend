@@ -10,7 +10,7 @@ import { request } from "../../helper/helper";
 const columns = [
   {
     dataField: "_id",
-    text: "ID",
+    text: "Código",
     hidden: true,
   },
   {
@@ -19,8 +19,8 @@ const columns = [
     sort: true,
   },
   {
-    dataField: "apellido_p",
-    text: "Primer Apellido",
+    dataField: "categoria",
+    text: "Categoría",
     sort: true,
   },
   {
@@ -28,16 +28,12 @@ const columns = [
     text: "Segundo Apellido",
   },
   {
-    dataField: "telefono",
-    text: "Telefono",
+    dataField: "cantidad",
+    text: "Cantidad",
   },
   {
-    dataField: "mail",
-    text: "Correo electronico",
-  },
-  {
-    dataField: "direccion",
-    text: "Direccion",
+    dataField: "stock_minimo",
+    text: "Stock mínimo",
   },
 ];
 
