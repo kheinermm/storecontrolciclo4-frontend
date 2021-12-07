@@ -27,6 +27,7 @@ export default class DataGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      idProducto: "",
       loading: false,
       rows: [],
     };
@@ -38,6 +39,7 @@ export default class DataGrid extends React.Component {
     if (this.props.showDeleteButton && !this.existsColumn("Eliminar")) {
       this.props.columns.push(this.getDeleteButton());
     }
+    
   }
 
   componentDidMount() {
@@ -71,7 +73,7 @@ export default class DataGrid extends React.Component {
       formatter: function priceFormatter(cell, row) {
         // console.log(row);
         return (
-          <Button onClick={() => this.props.onClickEditButton(row)}>
+          <Button onClick={() => {}}>
             <FontAwesomeIcon icon={faEdit} />
           </Button>
         );
@@ -84,7 +86,7 @@ export default class DataGrid extends React.Component {
       text: "Eliminar",
       formatter: (cell, row) => {
         return (
-          <Button onClick={() => this.props.onClickDeleteButton(row)}>
+          <Button onClick={() => {}}>
             <FontAwesomeIcon icon={faTrash} />
           </Button>
         );

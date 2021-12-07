@@ -4,7 +4,7 @@ import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
-import confirmationPrompts from "../../prompts/confirmation";
+import ConfirmationPrompts from "../../prompts/confirmation";
 
 export default class EmpleadosEditar extends React.Component {
   constructor(props) {
@@ -138,20 +138,16 @@ export default class EmpleadosEditar extends React.Component {
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={2000}
+          duration={3000}
           onExited={this.onExitedMessage}
         />
 
-        <confirmationPrompts
+        <ConfirmationPrompts
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
           text={this.state.confirmation.text}
-          onCancel={() => {
-            this.onCancel();
-          }}
-          onConfirm={() => {
-            this.onConfirm();
-          }}
+          onCancel={this.onCancel}
+          onConfirm={this.onConfirm}
         />
 
         <Loading show={this.state.loading} />

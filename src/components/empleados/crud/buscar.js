@@ -1,11 +1,10 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import "../ventas.css";
+import { Container, Row, Col } from "react-bootstrap";
+import "../empleados.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
-import { request } from "../../helper/helper";
 
 const columns = [
   {
@@ -41,15 +40,15 @@ const columns = [
   },
 ];
 
-export default class VentasBuscar extends React.Component {
+export default class EmpleadosBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idVenta: null,
+      idEmpleado: null,
       loading: false,
       confirmation: {
-        title: "Eliminar Venta",
-        text: "¿Esta seguro de eliminar el venta?",
+        title: "Eliminar Empleado",
+        text: "¿Esta seguro de eliminar el empleado?",
         show: false,
       },
       message: {
@@ -65,13 +64,13 @@ export default class VentasBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    //this.props.showIdVenta(row._id);
+    this.props.showIdEmpleado(row._id);
     this.props.changeTab("editar");
   }
 
   onClickDeleteButton(row) {
     this.setState({
-      idVenta: row._id,
+      idEmpleado: row._id,
       confirmation: {
         ...this.state.confirmation,
         show: true,
@@ -96,7 +95,7 @@ export default class VentasBuscar extends React.Component {
           show: false,
         },
       },
-      this.eliminarVenta()
+      this.eliminarEmpleado()
     );
   }
 
@@ -104,10 +103,10 @@ export default class VentasBuscar extends React.Component {
     this.props.changeTab("buscar");
   }
 
-  eliminarVenta() {
+  eliminarEmpleado() {
     this.setState({ loading: true });
     request
-      .delete(`/ventas/${this.state.idVenta}`)
+      .delete(`/empleados/${this.state.idEmpleado}`)
       .then((response) => {
         this.setState({
           loading: false,
@@ -134,7 +133,7 @@ export default class VentasBuscar extends React.Component {
 
   render() {
     return (
-      <Container id="ventas-buscar-container">
+      <Container id="empleados-buscar-container">
         <ConfirmationPrompts
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
@@ -153,12 +152,12 @@ export default class VentasBuscar extends React.Component {
         <Loading show={this.props.loading} />
 
         <Row>
-          <h1>Buscar Ventas</h1>
+          <h1>Buscar Empleados</h1>
           <hr />
         </Row>
         <Row>
           <DataGrid
-            url="/ventas"
+            url="/empleados"
             columns={columns}
             showEditButton={true}
             showDeleteButton={true}

@@ -177,7 +177,7 @@ export default class ProveedoresBuscar extends React.Component {
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={2000}
+          duration={3000}
           onExited={this.onExitedMessage}
         />
 
