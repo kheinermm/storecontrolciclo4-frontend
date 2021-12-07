@@ -43,15 +43,15 @@ export default class ProveedoresCrear extends React.Component {
       .then((response) => {
 
         console.log(response.data);
-        // if (response.data.exito) {
-        //   this.setState({
-        //     redirect: response.data.exito,
-        //     message: {
-        //       text: response.data.msg,
-        //       show: true,
-        //     },
-        //   });
-        // }
+        if (response.data.exito) {
+          this.setState({
+            redirect: response.data.exito,
+            message: {
+              text: response.data.msg,
+              show: true,
+            },
+          });
+        }
         this.setState({ loading: false });
       })
       .catch((error) => {
