@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, } from "react-bootstrap";
 import "../productos.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
@@ -65,14 +65,15 @@ export default class ProductosBuscar extends React.Component {
     this.onConfirm = this.onConfirm.bind(this);
   }
 
-  onClickEditButton(row) {
-    this.props.setIdProducto(row._id);
+  onClickEditButton(id) {
+    this.props.setIdProducto(id);
     this.props.changeTab("editar");
   }
 
-  onClickDeleteButton(row) {
+  onClickDeleteButton(id) {
+    console.log(this.idProducto);
     this.setState({
-      idProducto: row._id,
+      idProducto: id,
       confirmation: {
         ...this.state.confirmation,
         show: true,
@@ -97,7 +98,7 @@ export default class ProductosBuscar extends React.Component {
           show: false,
         },
       },
-      this.eliminarProducto()
+      this.eliminarProducto(),
     );
   }
 
@@ -140,15 +141,15 @@ export default class ProductosBuscar extends React.Component {
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
           text={this.state.confirmation.text}
-          onCancel={this.onCancel()}
-          onConfirm={this.onConfirm()}
+          onCancel={this.onCancel}
+          onConfirm={() => this.onConfirm()}
         />
 
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={2000}
-          onExited={this.onExitedMessage()}
+          duration={3000}
+          onExited={this.onExitedMessage}
         />
 
         <Loading show={this.props.loading} />
@@ -163,9 +164,11 @@ export default class ProductosBuscar extends React.Component {
             columns={columns}
             showEditButton={true}
             showDeleteButton={true}
-            // onClickEditButton={this.onClickEditButton()}
-            // onClickDeleteButton={this.onClickDeleteButton()}
+            parentCallback = {this.callbackFunction}
+          onClickEditButton={this.onClickEditButton}
+          onClickDeleteButton={this.onClickDeleteButton}
           />
+          <p> {this.state.idProducto} </p>
         </Row>
       </Container>
     );

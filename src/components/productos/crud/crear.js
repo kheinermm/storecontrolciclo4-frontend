@@ -71,8 +71,10 @@ export default class ProductosCrear extends React.Component {
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={2000}
-          onExited={this.onExitedMessage}
+          duration={3000}
+          onExited={() => {
+            this.onExitedMessage();
+          }}
         />
 
         <Loading show={this.state.loading} />
@@ -82,45 +84,51 @@ export default class ProductosCrear extends React.Component {
         </Row>
         <Row>
           <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre producto</Form.Label>
+          <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Codigo producto</Form.Label>
               <Form.Control
+                value={this.state.producto.codigo}
+                onChange={(e) => this.setValue("codigo", e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Nombre Producto</Form.Label>
+              <Form.Control
+                value={this.state.producto.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Primer apellido</Form.Label>
+              <Form.Label>Categoria</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("apellido_p", e.target.value)}
+                value={this.state.producto.categoria}
+                onChange={(e) => this.setValue("categoria", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Segundo apellido</Form.Label>
+              <Form.Label>Precio</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("apellido_m", e.target.value)}
+                value={this.state.producto.precio}
+                onChange={(e) => this.setValue("precio", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Telefono</Form.Label>
+              <Form.Label>Cantidad</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("telefono", e.target.value)}
+                value={this.state.producto.cantidad}
+                onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Correo electronico</Form.Label>
+              <Form.Label>Stock Minimo</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("mail", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Direccion</Form.Label>
-              <Form.Control
-                onChange={(e) => this.setValue("direccion", e.target.value)}
+                value={this.state.producto.stockMinimo}
+                onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>
 

@@ -55,14 +55,14 @@ export default class Productos extends React.Component {
           {this.state.currentTab === "buscar" ? (
             <ProductosBuscar
               changeTab={this.changeTab}
-              setIdProducto={this.setIdProducto(this.getIdProducto())}
+              setIdProducto={this.setIdProducto}
             />
           ) : this.state.currentTab === "crear" ? (
             <ProductosCrear changeTab={this.changeTab} />
           ) : (
             <ProductosEditar
               changeTab={this.changeTab("editar")}
-              getIdProducto={this.getIdProducto()}
+              getIdProducto={this.getIdProducto}
             />
           )}
         </Row>
