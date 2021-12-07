@@ -14,30 +14,24 @@ const columns = [
     hidden: true,
   },
   {
-    dataField: "nombre",
-    text: "Nombre",
-    sort: true,
+    dataField: "fecha",
+    text: "Fecha",
   },
   {
-    dataField: "apellido_p",
-    text: "Primer Apellido",
-    sort: true,
+    dataField: "codigo_ref",
+    text: "Codigo Ref",
   },
   {
-    dataField: "apellido_m",
-    text: "Segundo Apellido",
+    dataField: "cantidad ",
+    text: "Cantidad",
   },
   {
-    dataField: "telefono",
-    text: "Telefono",
+    dataField: "precio_total",
+    text: "Precio",
   },
   {
-    dataField: "mail",
-    text: "Correo electronico",
-  },
-  {
-    dataField: "direccion",
-    text: "Direccion",
+    dataField: "descuento",
+    text: "Descuento",
   },
 ];
 
@@ -65,7 +59,7 @@ export default class VentasBuscar extends React.Component {
   }
 
   onClickEditButton(row) {
-    //this.props.showIdVenta(row._id);
+    this.props.showIdVenta(row._id);
     this.props.changeTab("editar");
   }
 
