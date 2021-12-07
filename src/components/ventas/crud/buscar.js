@@ -14,30 +14,26 @@ const columns = [
     hidden: true,
   },
   {
-    dataField: "nombre",
-    text: "Nombre",
+    dataField: "fecha",
+    text: "Fecha",
     sort: true,
   },
   {
-    dataField: "apellido_p",
-    text: "Primer Apellido",
+    dataField: "codigo_ref",
+    text: "Codigo Referencia",
     sort: true,
   },
   {
-    dataField: "apellido_m",
-    text: "Segundo Apellido",
+    dataField: "cantidad",
+    text: "Cantidad",
   },
   {
-    dataField: "telefono",
-    text: "Telefono",
+    dataField: "precio_total",
+    text: "Precio Total",
   },
   {
-    dataField: "mail",
-    text: "Correo electronico",
-  },
-  {
-    dataField: "direccion",
-    text: "Direccion",
+    dataField: "descuento",
+    text: "Descuento",
   },
 ];
 
