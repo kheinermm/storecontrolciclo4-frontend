@@ -4,7 +4,7 @@ import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
-export default class ProveedoresCrear extends React.Component {
+export default class VentasCrear extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ export default class ProveedoresCrear extends React.Component {
         show: false,
       },
       loading: false,
-      venta: {
+      Venta: {
         fecha: "",
         codigo_ref: "",
         cantidad: "",
@@ -27,30 +27,30 @@ export default class ProveedoresCrear extends React.Component {
 
   setValue(index, value) {
     this.setState({
-      venta: {
-        ...this.state.venta,
+      Venta: {
+        ...this.state.Venta,
         [index]: value,
       },
     });
   }
 
   guardarVentas() {
-    console.log(this.state.ventas);
+    console.log(this.state.Ventas);
     this.setState({ loading: true });
     request
-      .post("/ventas", this.state.venta)
+      .post("/Ventas", this.state.Venta)
       .then((response) => {
 
         console.log(response.data);
-        // if (response.data.exito) {
-        //   this.setState({
-        //     redirect: response.data.exito,
-        //     message: {
-        //       text: response.data.msg,
-        //       show: true,
-        //     },
-        //   });
-        // }
+        if (response.data.exito) {
+          this.setState({
+            redirect: response.data.exito,
+            message: {
+              text: response.data.msg,
+              show: true,
+            },
+          });
+        }
         this.setState({ loading: false });
       })
       .catch((error) => {
@@ -68,7 +68,7 @@ export default class ProveedoresCrear extends React.Component {
   
   render() {
     return (
-      <Container id="ventas-crear-container">
+      <Container id="Ventas-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
@@ -86,35 +86,35 @@ export default class ProveedoresCrear extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Fecha</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("nombre", e.target.value)}
+                onChange={(e) => this.setValue("fecha", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Codigo Referencia</Form.Label>
+              <Form.Label>Codigo referencia</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("apellido_p", e.target.value)}
+                onChange={(e) => this.setValue("codigo_ref", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Cantidad</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("apellido_m", e.target.value)}
+                onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Precio Total</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("telefono", e.target.value)}
+                onChange={(e) => this.setValue("precio_total", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Descuento</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("mail", e.target.value)}
+                onChange={(e) => this.setValue("descuento", e.target.value)}
               />
             </Form.Group>
 

@@ -37,7 +37,7 @@ const columns = [
   },
 ];
 
-export default class VentasBuscar extends React.Component {
+export default class ventasBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +45,7 @@ export default class VentasBuscar extends React.Component {
       loading: false,
       confirmation: {
         title: "Eliminar Venta",
-        text: "¿Esta seguro de eliminar el venta?",
+        text: "¿Esta seguro de eliminar el Venta?",
         show: false,
       },
       message: {
@@ -149,7 +149,7 @@ export default class VentasBuscar extends React.Component {
         <Loading show={this.props.loading} />
 
         <Row>
-          <h1>Buscar Ventas</h1>
+          <h1>Buscar ventas</h1>
           <hr />
         </Row>
         <Row>
