@@ -41,17 +41,16 @@ export default class ProductosCrear extends React.Component {
     request
       .post("/productos", this.state.producto)
       .then((response) => {
-
         console.log(response.data);
-        // if (response.data.exito) {
-        //   this.setState({
-        //     redirect: response.data.exito,
-        //     message: {
-        //       text: response.data.msg,
-        //       show: true,
-        //     },
-        //   });
-        // }
+        if (response.data.exito) {
+          this.setState({
+            redirect: response.data.exito,
+            message: {
+              text: response.data.msg,
+              show: true,
+            },
+          });
+        }
         this.setState({ loading: false });
       })
       .catch((error) => {
@@ -66,15 +65,16 @@ export default class ProductosCrear extends React.Component {
     }
   }
 
-  
   render() {
     return (
       <Container id="productos-crear-container">
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={2000}
-          onExited={this.onExitedMessage}
+          duration={3000}
+          onExited={() => {
+            this.onExitedMessage();
+          }}
         />
 
         <Loading show={this.state.loading} />
@@ -83,17 +83,19 @@ export default class ProductosCrear extends React.Component {
           <h1>Crear Producto</h1>
         </Row>
         <Row>
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Codigo</Form.Label>
+          <Form>
+          <Form.Group className="mb-3" controlId="formBasic">
+              <Form.Label>Codigo producto</Form.Label>
               <Form.Control
-                onChange={(e) => this.setValue("_id", e.target.value)}
+                value={this.state.producto.codigo}
+                onChange={(e) => this.setValue("codigo", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre</Form.Label>
+              <Form.Label>Nombre Producto</Form.Label>
               <Form.Control
+                value={this.state.producto.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
               />
             </Form.Group>
@@ -101,6 +103,7 @@ export default class ProductosCrear extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Categoria</Form.Label>
               <Form.Control
+                value={this.state.producto.categoria}
                 onChange={(e) => this.setValue("categoria", e.target.value)}
               />
             </Form.Group>
@@ -108,6 +111,7 @@ export default class ProductosCrear extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Precio</Form.Label>
               <Form.Control
+                value={this.state.producto.precio}
                 onChange={(e) => this.setValue("precio", e.target.value)}
               />
             </Form.Group>
@@ -115,25 +119,23 @@ export default class ProductosCrear extends React.Component {
             <Form.Group className="mb-3" controlId="formBasic">
               <Form.Label>Cantidad</Form.Label>
               <Form.Control
+                value={this.state.producto.cantidad}
                 onChange={(e) => this.setValue("cantidad", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Stock mínimo</Form.Label>
+              <Form.Label>Stock Minimo</Form.Label>
               <Form.Control
+                value={this.state.producto.stockMinimo}
                 onChange={(e) => this.setValue("stockMinimo", e.target.value)}
               />
             </Form.Group>
 
-            <Button
-              variant="primary"
-              onClick={() => this.guardarProductos()}
-            >
+            <Button variant="primary" onClick={() => this.guardarProductos()}>
               Guardar Producto
             </Button>
           </Form>
-
         </Row>
       </Container>
     );
