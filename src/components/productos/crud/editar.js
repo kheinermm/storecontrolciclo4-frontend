@@ -30,7 +30,7 @@ export default class ProductosEditar extends React.Component {
         cantidad: "",
         stockMinimo: "",
       },
-     };
+    };
     this.onExitedMessage = this.onExitedMessage.bind(this);
     this.onCancel = this.onCancel.bind(this);
     this.onConfirm = this.onConfirm.bind(this);
@@ -51,8 +51,8 @@ export default class ProductosEditar extends React.Component {
           loading: false,
         });
       })
-      .catch((error) => {
-        console.error(error);
+      .catch((err) => {
+        console.error(err);
         this.setState({ loading: false });
       });
   }
@@ -123,7 +123,7 @@ export default class ProductosEditar extends React.Component {
     });
   }
 
-  
+
   render() {
     return (
       <Container id="productos-crear-container">
@@ -148,17 +148,18 @@ export default class ProductosEditar extends React.Component {
           <h1>Editar Producto</h1>
         </Row>
         <Row>
-        <Form>
+
+          <Form>
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Codigo</Form.Label>
+              <Form.Label>Codigo producto</Form.Label>
               <Form.Control
-                value={this.state.producto._id}
+                value={this.state.producto.codigo}
                 onChange={(e) => this.setValue("codigo", e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre</Form.Label>
+              <Form.Label>Nombre Producto</Form.Label>
               <Form.Control
                 value={this.state.producto.nombre}
                 onChange={(e) => this.setValue("nombre", e.target.value)}
@@ -190,7 +191,7 @@ export default class ProductosEditar extends React.Component {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Stock minimo</Form.Label>
+              <Form.Label>Stock Minimo</Form.Label>
               <Form.Control
                 value={this.state.producto.stockMinimo}
                 onChange={(e) => this.setValue("stockMinimo", e.target.value)}
@@ -208,66 +209,6 @@ export default class ProductosEditar extends React.Component {
               Guardar Producto
             </Button>
           </Form>
-          {/* <Form>
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Codigo producto</Form.Label>
-              <Form.Control
-                value={this.state.empleado.codigo}
-                onChange={(e) => this.setValue("codigo", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Nombre Producto</Form.Label>
-              <Form.Control
-                value={this.state.empleado.nombre}
-                onChange={(e) => this.setValue("nombre", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Categoria</Form.Label>
-              <Form.Control
-                value={this.state.empleado.categoria}
-                onChange={(e) => this.setValue("categoria", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Precio</Form.Label>
-              <Form.Control
-                value={this.state.empleado.precio}
-                onChange={(e) => this.setValue("precio", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Cantidad</Form.Label>
-              <Form.Control
-                value={this.state.empleado.cantidad}
-                onChange={(e) => this.setValue("cantidad", e.target.value)}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasic">
-              <Form.Label>Stock Minimo</Form.Label>
-              <Form.Control
-                value={this.state.empleado.stockMinimo}
-                onChange={(e) => this.setValue("stockMinimo", e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              onClick={() =>
-                this.setState({
-                  confirmation: { ...this.state.confirmation, show: true },
-                })
-              }
-            >
-              Guardar Producto
-            </Button>
-          </Form> */}
         </Row>
       </Container>
     );
