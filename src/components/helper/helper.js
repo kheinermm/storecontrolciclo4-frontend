@@ -1,7 +1,7 @@
 import { isUndefined } from "util";
 import axios from "axios";
 import Cookies from "universal-cookie/es6";
-import { APIHOST as host } from "../../App.json";
+import { APIHOST as host } from "../../app.json";
 
 const cookies = new Cookies();
 
