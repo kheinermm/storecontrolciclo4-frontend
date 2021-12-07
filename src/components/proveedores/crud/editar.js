@@ -4,7 +4,7 @@ import { Container, Form, Row, Button } from "react-bootstrap";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
-import confirmationPrompts from "../../prompts/confirmation";
+import ConfirmationPrompts from "../../prompts/confirmation";
 
 export default class ProveedoresEditar extends React.Component {
   constructor(props) {
@@ -134,7 +134,7 @@ export default class ProveedoresEditar extends React.Component {
           onExited={this.onExitedMessage}
         />
 
-        <confirmationPrompts
+        <ConfirmationPrompts
           show={this.state.confirmation.show}
           title={this.state.confirmation.title}
           text={this.state.confirmation.text}

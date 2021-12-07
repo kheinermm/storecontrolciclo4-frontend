@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import "../proveedores.css";
 import DataGrid from "../../grid/grid";
 import ConfirmationPrompts from "../../prompts/confirmation";
